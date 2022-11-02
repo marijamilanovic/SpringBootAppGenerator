@@ -8,7 +8,16 @@ import java.util.List;
 public class FMClass extends FMType {	
 	
 	private String visibility;
+	private String tableName;
 	
+
+	public String getTableName() {
+		return tableName;
+	}
+
+	public void setTableName(String tableName) {
+		this.tableName = tableName;
+	}
 
 	//Class properties
 	private List<FMProperty> FMProperties = new ArrayList<FMProperty>();
