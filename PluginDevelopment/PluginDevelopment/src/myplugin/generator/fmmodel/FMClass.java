@@ -13,6 +13,7 @@ public class FMClass extends FMType {
 	private List<FMProperty> FMProperties = new ArrayList<FMProperty>();
 	//list of packages (for import declarations) 
 	private List<String> importedPackages = new ArrayList<String>();
+	private List<FMReferencedProperty> referencedProperties = new ArrayList<>();
 	
 	/** @ToDo: add list of methods */
 	
@@ -21,6 +22,15 @@ public class FMClass extends FMType {
 		super(name, classPackage);		
 		this.visibility = visibility;
 	}	
+	
+	public FMClass(String name, String typePackage, String visibility, List<FMProperty> fMProperties,
+			List<String> importedPackages, List<FMReferencedProperty> referencedProperties) {
+		super(name, typePackage);
+		this.visibility = visibility;
+		FMProperties = fMProperties;
+		this.importedPackages = importedPackages;
+		this.referencedProperties = referencedProperties;
+	}
 	
 	public List<FMProperty> getProperties(){
 		return FMProperties;
@@ -68,6 +78,26 @@ public class FMClass extends FMType {
 
 	public void setTableName(String tableName) {
 		this.tableName = tableName;
+	}
+
+	public List<FMProperty> getFMProperties() {
+		return FMProperties;
+	}
+
+	public void setFMProperties(List<FMProperty> fMProperties) {
+		FMProperties = fMProperties;
+	}
+
+	public List<FMReferencedProperty> getReferencedProperties() {
+		return referencedProperties;
+	}
+
+	public void setReferencedProperties(List<FMReferencedProperty> referencedProperties) {
+		this.referencedProperties = referencedProperties;
+	}
+
+	public void setImportedPackages(List<String> importedPackages) {
+		this.importedPackages = importedPackages;
 	}
 	
 	
