@@ -141,8 +141,16 @@ public class ModelAnalyzer {
 		int lower = p.getLower();
 		int upper = p.getUpper();
 		
+		//dodaj deo za unique i nullable
+		Boolean isUnique = p.isUnique();
+		Boolean isNullable = false;
+		if (lower == 1) {
+			// 1 -> nullable = true
+			isNullable = true;
+		}
+		
 		FMProperty prop = new FMProperty(attName, typeName, p.getVisibility().toString(), 
-				lower, upper);
+				lower, upper, isUnique, isNullable); 
 		
 		//Persistent property
 		Stereotype persistentProperty = StereotypesHelper.getAppliedStereotypeByString(cl, "PersistenceProperty");
@@ -159,9 +167,6 @@ public class ModelAnalyzer {
 		Integer length = null;
 		Integer precision = null;
 		Strategy strategy = null;
-		Boolean isKey = null;
-		Boolean isNullable = null;
-		Boolean isUnique = null;
 		
 		List<Property> propertyTags = persistentProperty.getOwnedAttribute();
 		for (int i=0; i < propertyTags.size(); i++) {

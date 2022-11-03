@@ -9,19 +9,8 @@ public class FMClass extends FMType {
 	
 	private String visibility;
 	private String tableName;
-	
-
-	public String getTableName() {
-		return tableName;
-	}
-
-	public void setTableName(String tableName) {
-		this.tableName = tableName;
-	}
-
 	//Class properties
 	private List<FMProperty> FMProperties = new ArrayList<FMProperty>();
-	
 	//list of packages (for import declarations) 
 	private List<String> importedPackages = new ArrayList<String>();
 	
@@ -71,8 +60,15 @@ public class FMClass extends FMType {
 
 	public void setVisibility(String visibility) {
 		this.visibility = visibility;
-	}	
+	}
 
+	public String getTableName() {
+		return tableName;
+	}
+
+	public void setTableName(String tableName) {
+		this.tableName = tableName;
+	}
 	
 	
 }
