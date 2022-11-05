@@ -27,7 +27,15 @@ public class FMProperty extends FMElement  {
 		this.isUnique = false;
 		this.isNullable = false;
 	}
-	
+		
+	public FMProperty(String name, String type, String visibility, Integer lower, Integer upper) {
+		super(name);
+		this.type = type;
+		this.visibility = visibility;
+		this.lower = lower;
+		this.upper = upper;
+	}
+
 	public String getType() {
 		return type;
 	}
@@ -55,5 +63,21 @@ public class FMProperty extends FMElement  {
 
 	public void setUpper(Integer upper) {
 		this.upper = upper;
+	}
+
+	public Boolean getIsUnique() {
+		return isUnique;
+	}
+
+	public void setIsUnique(Boolean isUnique) {
+		this.isUnique = isUnique;
+	}
+
+	public Boolean getIsNullable() {
+		return isNullable;
+	}
+
+	public void setIsNullable(Boolean isNullable) {
+		this.isNullable = isNullable;
 	}
 }

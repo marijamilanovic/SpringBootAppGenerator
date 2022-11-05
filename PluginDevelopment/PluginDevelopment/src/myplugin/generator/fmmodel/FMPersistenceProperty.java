@@ -7,12 +7,14 @@ public class FMPersistenceProperty extends FMProperty{
 	private Integer precision;
 	private Strategy strategy;
 	
-	public FMPersistenceProperty(String name, String type, String visibility, int lower, int upper) {
-		super(name, type, visibility, lower, upper);
+	public FMPersistenceProperty(String name, String type, String visibility, int lower, int upper, Boolean isUnique,
+			Boolean isNullable) {
+		super(name, type, visibility, lower, upper, isUnique, isNullable);
+		// TODO Auto-generated constructor stub
 	}
-	
+
 	public FMPersistenceProperty(FMProperty fmPersistenceProperty, String columnName,Integer length, Integer precision,Strategy strategy) {
-		super(fmPersistenceProperty.getName(), fmPersistenceProperty.getType(), fmPersistenceProperty.getVisibility(), fmPersistenceProperty.getLower(), fmPersistenceProperty.getUpper());
+		super(fmPersistenceProperty.getName(), fmPersistenceProperty.getType(), fmPersistenceProperty.getVisibility(), fmPersistenceProperty.getLower(), fmPersistenceProperty.getUpper(), fmPersistenceProperty.getIsNullable(), fmPersistenceProperty.getIsUnique());
 		this.columnName = columnName;
 		this.length = length;
 		this.precision = precision;

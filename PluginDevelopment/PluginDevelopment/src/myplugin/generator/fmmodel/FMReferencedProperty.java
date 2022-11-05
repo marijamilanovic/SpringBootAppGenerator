@@ -1,23 +1,23 @@
 package myplugin.generator.fmmodel;
 
-public class FMReferencedProperty {
+public class FMReferencedProperty extends FMProperty {
 	private FetchType fetchType;
 	private CascadeType cascade;
 	private String columnName;
 	private String joinTable;
-	
-	public FMReferencedProperty() {
-		super();
-	}
-	
-	public FMReferencedProperty(FetchType fetchType, CascadeType cascade, String columnName, String joinTable) {
-		super();
+	private Integer oppositeEnd;
+
+	public FMReferencedProperty(String name, String type, String visibility, int lower, int upper, Boolean isUnique,
+			Boolean isNullable, FetchType fetchType, CascadeType cascade, String columnName, String joinTable,
+			Integer oppositeEnd) {
+		super(name, type, visibility, lower, upper, isUnique, isNullable);
 		this.fetchType = fetchType;
 		this.cascade = cascade;
 		this.columnName = columnName;
 		this.joinTable = joinTable;
+		this.oppositeEnd = oppositeEnd;
 	}
-	
+
 	public FetchType getFetchType() {
 		return fetchType;
 	}

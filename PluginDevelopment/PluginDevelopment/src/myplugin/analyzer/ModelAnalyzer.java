@@ -3,11 +3,14 @@ package myplugin.analyzer;
 import java.util.Iterator;
 import java.util.List;
 
+import myplugin.generator.fmmodel.CascadeType;
 import myplugin.generator.fmmodel.FMClass;
 import myplugin.generator.fmmodel.FMEnumeration;
 import myplugin.generator.fmmodel.FMModel;
 import myplugin.generator.fmmodel.FMPersistenceProperty;
 import myplugin.generator.fmmodel.FMProperty;
+import myplugin.generator.fmmodel.FMReferencedProperty;
+import myplugin.generator.fmmodel.FetchType;
 import myplugin.generator.fmmodel.Strategy;
 
 import com.nomagic.uml2.ext.jmi.helpers.ModelHelper;
@@ -106,8 +109,15 @@ public class ModelAnalyzer {
 		Iterator<Property> it = ModelHelper.attributes(cl);
 		while (it.hasNext()) {
 			Property p = it.next();
-			FMProperty prop = getPropertyData(p, cl);
-			fmClass.addProperty(prop);	
+			//ako ima asocijaciju ka nekoj klasi => ima ReferencedProperty
+			if (p.getOpposite() != null) {
+				FMReferencedProperty referencedProperty = getReferencedPropertyData(p, cl);
+				fmClass.addReferencedProperty(referencedProperty);
+			} else {
+				FMProperty prop = getPropertyData(p, cl);
+				fmClass.addProperty(prop);
+			}
+			
 		}	
 		
 		/** @ToDo:
@@ -122,7 +132,7 @@ public class ModelAnalyzer {
 		
 		return fmClass;
 	}
-	
+
 	private FMProperty getPropertyData(Property p, Class cl) throws AnalyzeException {
 		String attName = p.getName();
 		if (attName == null) 
@@ -153,7 +163,7 @@ public class ModelAnalyzer {
 				lower, upper, isUnique, isNullable); 
 		
 		//Persistent property
-		Stereotype persistentProperty = StereotypesHelper.getAppliedStereotypeByString(cl, "PersistenceProperty");
+		Stereotype persistentProperty = StereotypesHelper.getAppliedStereotypeByString(p, "PersistenceProperty");
 		if (persistentProperty != null) {
 			prop = createPersistentProperty(prop, p, persistentProperty);
 		}
@@ -161,7 +171,78 @@ public class ModelAnalyzer {
 		return prop;		
 	}	
 	
-	private FMProperty createPersistentProperty(FMProperty prop, Property p, Stereotype persistentProperty) {
+	private FMReferencedProperty getReferencedPropertyData(Property p, Class cl) throws AnalyzeException{
+		// TODO Auto-generated method stub
+        Stereotype referencedPropertyStereotype = null;
+        FetchType fetchType = null;
+		CascadeType cascadeType = null;
+		String joinTable = null;
+		String columnName = null;
+		int upper = p.getUpper();
+		Integer oppositeEnd = p.getOpposite().getUpper();
+		
+		if(upper == -1 && oppositeEnd == -1) {
+			referencedPropertyStereotype = StereotypesHelper.getAppliedStereotypeByString(p, "ManyToMany");
+		} else if(upper == -1 && oppositeEnd == 1) {
+			referencedPropertyStereotype = StereotypesHelper.getAppliedStereotypeByString(p, "OneToMany");
+		} else if(upper == 1 && oppositeEnd == -1) {
+			referencedPropertyStereotype = StereotypesHelper.getAppliedStereotypeByString(p, "ManyToOne");
+		} else {
+			referencedPropertyStereotype = StereotypesHelper.getAppliedStereotypeByString(p, "OneToOne");
+		}
+
+		
+		if(referencedPropertyStereotype != null) {
+			List<Property> propertyTags = referencedPropertyStereotype.getOwnedAttribute();
+			for (int i = 0; i < propertyTags.size(); i++) {
+				Property tag = propertyTags.get(i);
+				// preuzimanje vrednosti tagova
+	            List tagValues = StereotypesHelper.getStereotypePropertyValue(p, referencedPropertyStereotype, tag.getName());
+	            if (tagValues.size() > 0) {
+				switch (tag.getName()) {
+				case "columnName": 
+					columnName = (String) tagValues.get(0);
+				break;
+				case "fetch":
+					if(tagValues.get(0) instanceof EnumerationLiteral) {
+						fetchType = FetchType.valueOf(getEnumerationString((EnumerationLiteral)tagValues.get(0)));
+					}
+					break;
+				case "cascade":
+					if(tagValues.get(0) instanceof EnumerationLiteral) {
+						cascadeType = CascadeType.valueOf(getEnumerationString((EnumerationLiteral)tagValues.get(0)));
+					}
+					break;
+				case "joinTable":
+					joinTable = (String) tagValues.get(0);
+					break;
+				}
+	            }
+			}
+		}
+		
+		String attName = p.getName();
+		if (attName == null) 
+			throw new AnalyzeException("Properties of the class: " + cl.getName() +
+					" must have names!");
+		Type attType = p.getType();
+		if (attType == null)
+			throw new AnalyzeException("Property " + cl.getName() + "." +
+			p.getName() + " must have type!");
+		String typeName = attType.getName();
+		if (typeName == null)
+			throw new AnalyzeException("Type ot the property " + cl.getName() + "." +
+			p.getName() + " must have name!");		
+		
+		FMProperty fmProperty = getPropertyData(p, cl);
+		FMReferencedProperty referencedProperty = new FMReferencedProperty(attName, attType.toString(), p.getVisibility().toString(), p.getLower(), p.getUpper(),
+				fmProperty.getIsUnique(), fmProperty.getIsNullable(), fetchType, cascadeType, columnName, joinTable, oppositeEnd);
+		
+		return referencedProperty;
+	}
+	
+
+	private FMPersistenceProperty createPersistentProperty(FMProperty prop, Property p, Stereotype persistentProperty) {
 		// TODO Auto-generated method stub
 		String columnName = null;
 		Integer length = null;

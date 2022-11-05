@@ -99,6 +99,11 @@ public class FMClass extends FMType {
 	public void setImportedPackages(List<String> importedPackages) {
 		this.importedPackages = importedPackages;
 	}
+
+	public void addReferencedProperty(FMReferencedProperty referencedProperty) {
+		// TODO Auto-generated method stub
+		referencedProperties.add(referencedProperty);
+	}
 	
 	
 }
