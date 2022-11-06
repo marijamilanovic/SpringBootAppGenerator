@@ -167,60 +167,11 @@ public class ModelAnalyzer {
 		if (persistentProperty != null) {
 			prop = createPersistentProperty(prop, p, persistentProperty);
 		}
-		
+	
 		return prop;		
 	}	
 	
 	private FMReferencedProperty getReferencedPropertyData(Property p, Class cl) throws AnalyzeException{
-		// TODO Auto-generated method stub
-        Stereotype referencedPropertyStereotype = null;
-        FetchType fetchType = null;
-		CascadeType cascadeType = null;
-		String joinTable = null;
-		String columnName = null;
-		int upper = p.getUpper();
-		Integer oppositeEnd = p.getOpposite().getUpper();
-		
-		if(upper == -1 && oppositeEnd == -1) {
-			referencedPropertyStereotype = StereotypesHelper.getAppliedStereotypeByString(p, "ManyToMany");
-		} else if(upper == -1 && oppositeEnd == 1) {
-			referencedPropertyStereotype = StereotypesHelper.getAppliedStereotypeByString(p, "OneToMany");
-		} else if(upper == 1 && oppositeEnd == -1) {
-			referencedPropertyStereotype = StereotypesHelper.getAppliedStereotypeByString(p, "ManyToOne");
-		} else {
-			referencedPropertyStereotype = StereotypesHelper.getAppliedStereotypeByString(p, "OneToOne");
-		}
-
-		
-		if(referencedPropertyStereotype != null) {
-			List<Property> propertyTags = referencedPropertyStereotype.getOwnedAttribute();
-			for (int i = 0; i < propertyTags.size(); i++) {
-				Property tag = propertyTags.get(i);
-				// preuzimanje vrednosti tagova
-	            List tagValues = StereotypesHelper.getStereotypePropertyValue(p, referencedPropertyStereotype, tag.getName());
-	            if (tagValues.size() > 0) {
-				switch (tag.getName()) {
-				case "columnName": 
-					columnName = (String) tagValues.get(0);
-				break;
-				case "fetch":
-					if(tagValues.get(0) instanceof EnumerationLiteral) {
-						fetchType = FetchType.valueOf(getEnumerationString((EnumerationLiteral)tagValues.get(0)));
-					}
-					break;
-				case "cascade":
-					if(tagValues.get(0) instanceof EnumerationLiteral) {
-						cascadeType = CascadeType.valueOf(getEnumerationString((EnumerationLiteral)tagValues.get(0)));
-					}
-					break;
-				case "joinTable":
-					joinTable = (String) tagValues.get(0);
-					break;
-				}
-	            }
-			}
-		}
-		
 		String attName = p.getName();
 		if (attName == null) 
 			throw new AnalyzeException("Properties of the class: " + cl.getName() +
@@ -234,9 +185,26 @@ public class ModelAnalyzer {
 			throw new AnalyzeException("Type ot the property " + cl.getName() + "." +
 			p.getName() + " must have name!");		
 		
+        Stereotype referencedPropertyStereotype = null;
+        FMReferencedProperty referencedProperty = null;
+		int upper = p.getUpper();
+		Integer oppositeEnd = p.getOpposite().getUpper();
 		FMProperty fmProperty = getPropertyData(p, cl);
-		FMReferencedProperty referencedProperty = new FMReferencedProperty(attName, attType.toString(), p.getVisibility().toString(), p.getLower(), p.getUpper(),
-				fmProperty.getIsUnique(), fmProperty.getIsNullable(), fetchType, cascadeType, columnName, joinTable, oppositeEnd);
+		
+		if(upper == -1 && oppositeEnd == -1) {
+			referencedPropertyStereotype = StereotypesHelper.getAppliedStereotypeByString(p, "ManyToMany");
+		} else if(upper == -1 && oppositeEnd == 1) {
+			referencedPropertyStereotype = StereotypesHelper.getAppliedStereotypeByString(p, "OneToMany");
+		} else if(upper == 1 && oppositeEnd == -1) {
+			referencedPropertyStereotype = StereotypesHelper.getAppliedStereotypeByString(p, "ManyToOne");
+		} else {
+			referencedPropertyStereotype = StereotypesHelper.getAppliedStereotypeByString(p, "OneToOne");
+		}
+
+		
+		if(referencedPropertyStereotype != null) {
+			referencedProperty = createReferencedProperty(fmProperty, p, referencedPropertyStereotype);
+		}
 		
 		return referencedProperty;
 	}
@@ -276,6 +244,47 @@ public class ModelAnalyzer {
 		}
 		
 		return new FMPersistenceProperty(prop, columnName, length, precision, strategy);
+	}
+	
+	private FMReferencedProperty createReferencedProperty(FMProperty prop, Property p, Stereotype referencedProperty) {
+		// TODO Auto-generated method stub
+		FetchType fetchType = null;
+		CascadeType cascadeType = null;
+		String joinTable = null;
+		String columnName = null;
+		int upper = p.getUpper();
+		Integer oppositeEnd = p.getOpposite().getUpper();
+		
+		List<Property> propertyTags = referencedProperty.getOwnedAttribute();
+		for (int i = 0; i < propertyTags.size(); i++) {
+			Property tag = propertyTags.get(i);
+			// preuzimanje vrednosti tagova
+            List tagValues = StereotypesHelper.getStereotypePropertyValue(p, referencedProperty, tag.getName());
+            if (tagValues.size() > 0) {
+			switch (tag.getName()) {
+			case "columnName": 
+				columnName = (String) tagValues.get(0);
+			break;
+			case "fetch":
+				if(tagValues.get(0) instanceof EnumerationLiteral) {
+					fetchType = FetchType.valueOf(getEnumerationString((EnumerationLiteral)tagValues.get(0)));
+				}
+				break;
+			case "cascade":
+				if(tagValues.get(0) instanceof EnumerationLiteral) {
+					cascadeType = CascadeType.valueOf(getEnumerationString((EnumerationLiteral)tagValues.get(0)));
+				}
+				break;
+			case "joinTable":
+				joinTable = (String) tagValues.get(0);
+				break;
+			}
+            }
+
+		}
+		
+		return new FMReferencedProperty(p.getName(), p.getType().toString(), p.getVisibility().toString(),  p.getLower(), p.getUpper(),
+				prop.getIsUnique(), prop.getIsNullable(), fetchType, cascadeType, columnName, joinTable, oppositeEnd);
 	}
 
 	private FMEnumeration getEnumerationData(Enumeration enumeration, String packageName) throws AnalyzeException {
