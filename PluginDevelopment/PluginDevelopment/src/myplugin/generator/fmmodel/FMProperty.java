@@ -24,8 +24,8 @@ public class FMProperty extends FMElement  {
 		this.visibility = visibility;
 		this.lower = lower;
 		this.upper = upper;		
-		this.isUnique = false;
-		this.isNullable = false;
+		this.isUnique = isUnique;
+		this.isNullable = isNullable;
 	}
 		
 	public FMProperty(String name, String type, String visibility, Integer lower, Integer upper) {

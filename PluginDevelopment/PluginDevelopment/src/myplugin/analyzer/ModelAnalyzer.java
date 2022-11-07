@@ -153,10 +153,10 @@ public class ModelAnalyzer {
 		
 		//dodaj deo za unique i nullable
 		Boolean isUnique = p.isUnique();
-		Boolean isNullable = false;
+		Boolean isNullable = true;
 		if (lower == 1) {
-			// 1 -> nullable = true
-			isNullable = true;
+			// 1 -> nullable = false (obavezno da se unese)
+			isNullable = false;
 		}
 		
 		FMProperty prop = new FMProperty(attName, typeName, p.getVisibility().toString(), 
