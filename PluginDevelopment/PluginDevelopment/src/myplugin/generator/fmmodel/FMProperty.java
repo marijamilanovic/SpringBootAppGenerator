@@ -14,17 +14,28 @@ public class FMProperty extends FMElement  {
 	/** @ToDo: Add length, precision, unique... whatever is needed for ejb class generation
 	 * Also, provide these meta-attributes or tags in the modeling languange metaclass or 
 	 * stereotype */
+	private Boolean isUnique;
+	private Boolean isNullable;
 
 	
-	public FMProperty(String name, String type, String visibility, int lower, int upper) {
+	public FMProperty(String name, String type, String visibility, int lower, int upper, Boolean isUnique, Boolean isNullable) {
 		super(name);
 		this.type = type;
 		this.visibility = visibility;
-		
 		this.lower = lower;
 		this.upper = upper;		
+		this.isUnique = isUnique;
+		this.isNullable = isNullable;
 	}
-	
+		
+	public FMProperty(String name, String type, String visibility, Integer lower, Integer upper) {
+		super(name);
+		this.type = type;
+		this.visibility = visibility;
+		this.lower = lower;
+		this.upper = upper;
+	}
+
 	public String getType() {
 		return type;
 	}
@@ -52,5 +63,21 @@ public class FMProperty extends FMElement  {
 
 	public void setUpper(Integer upper) {
 		this.upper = upper;
+	}
+
+	public Boolean getIsUnique() {
+		return isUnique;
+	}
+
+	public void setIsUnique(Boolean isUnique) {
+		this.isUnique = isUnique;
+	}
+
+	public Boolean getIsNullable() {
+		return isNullable;
+	}
+
+	public void setIsNullable(Boolean isNullable) {
+		this.isNullable = isNullable;
 	}
 }
