@@ -3,12 +3,19 @@ package ${class.typePackage};
 import javax.persistence.*;
 import java.util.*;
 
+<#list imports as import>import ${import};
+</#list>
+
 @Entity 
 <#if class.tableName??>
 @Table(name="${class.tableName}")
 </#if>
+@Getter
+@Setter
+@RequiredArgsConstructor
 ${class.visibility} class ${class.name}{  
 <#list properties as property>
+
 	<#if property.upper == 1 >   
     ${property.visibility} ${property.type} ${property.name};
     <#elseif property.upper == -1 > 
@@ -19,7 +26,6 @@ ${class.visibility} class ${class.name}{
 		</#list>  
     </#if>     
 </#list>
-
 <#list persistentProperties as prop>
 <#if prop.strategy??>
 
