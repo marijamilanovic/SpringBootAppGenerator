@@ -55,7 +55,6 @@ public class EJBGenerator extends BasicGenerator {
 					context.put("referencedProperties", cl.getReferencedProperties());
 					List<FMProperty> persistentProperties = new ArrayList<FMProperty>();
 					List<FMProperty> properties = new ArrayList<FMProperty>();
-					System.out.println("Properties:" + cl.getProperties().size());
 					for (FMProperty fmProperty : cl.getProperties()) {
 						if (fmProperty instanceof FMPersistenceProperty) {
 							persistentProperties.add(fmProperty);
@@ -64,28 +63,7 @@ public class EJBGenerator extends BasicGenerator {
 						}
 					}
 					context.put("persistentProperties", persistentProperties);
-					System.out.println("PROPERTIES");
-					for (FMProperty fmProperty : properties) {
-						System.out.println(fmProperty.getName());
-					}
 					context.put("properties", properties);
-					System.out.println("********REFERENCED************");
-					System.out.println(cl.getReferencedProperties().size());
-					for (FMReferencedProperty fmProperty : cl.getReferencedProperties()) {
-						System.out.println(fmProperty);
-						System.out.println(fmProperty.getType().getClass().getName());
-						System.out.println(fmProperty.getName());
-						System.out.println(fmProperty.getType());
-					}
-					System.out.println("********************");
-					
-					System.out.println("********PERSISTENT************");
-					for (FMProperty fmProperty : persistentProperties) {
-						System.out.println(fmProperty.getName());
-						System.out.println(fmProperty.getType());
-					}
-					System.out.println("********************");
-					
 					getTemplate().process(context, out);
 					out.flush();
 				}
