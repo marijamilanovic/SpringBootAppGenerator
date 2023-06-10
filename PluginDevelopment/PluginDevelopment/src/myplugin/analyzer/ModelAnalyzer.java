@@ -159,8 +159,9 @@ public class ModelAnalyzer {
 			isNullable = false;
 		}
 		
-		FMProperty prop = new FMProperty(attName, typeName, p.getVisibility().toString(), 
+		FMProperty prop = new FMProperty(attName, typeName,  p.getVisibility().toString(), 
 				lower, upper, isUnique, isNullable); 
+		
 		
 		//Persistent property
 		Stereotype persistentProperty = StereotypesHelper.getAppliedStereotypeByString(p, "PersistenceProperty");
@@ -283,7 +284,7 @@ public class ModelAnalyzer {
 
 		}
 		
-		return new FMReferencedProperty(p.getName(), p.getType().toString(), p.getVisibility().toString(),  p.getLower(), p.getUpper(),
+		return new FMReferencedProperty(prop.getName(), prop.getType(), prop.getVisibility().toString(),  prop.getLower(), prop.getUpper(),
 				prop.getIsUnique(), prop.getIsNullable(), fetchType, cascadeType, columnName, joinTable, oppositeEnd);
 	}
 

@@ -1,5 +1,6 @@
 package myplugin.generator.fmmodel;
 
+import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Type;
 
 public class FMProperty extends FMElement  {
 	//Property type

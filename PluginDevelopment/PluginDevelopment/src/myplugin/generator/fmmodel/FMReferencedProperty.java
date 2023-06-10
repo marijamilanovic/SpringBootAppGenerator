@@ -49,5 +49,15 @@ public class FMReferencedProperty extends FMProperty {
 	public void setJoinTable(String joinTable) {
 		this.joinTable = joinTable;
 	}
+
+	public Integer getOppositeEnd() {
+		return oppositeEnd;
+	}
+
+	public void setOppositeEnd(Integer oppositeEnd) {
+		this.oppositeEnd = oppositeEnd;
+	}
+	
+	
 	
 }
