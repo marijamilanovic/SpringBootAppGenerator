@@ -5,17 +5,27 @@ public class FMReferencedProperty extends FMProperty {
 	private CascadeType cascade;
 	private String columnName;
 	private String joinTable;
+	private String joinColumn;
 	private Integer oppositeEnd;
 
 	public FMReferencedProperty(String name, String type, String visibility, int lower, int upper, Boolean isUnique,
 			Boolean isNullable, FetchType fetchType, CascadeType cascade, String columnName, String joinTable,
-			Integer oppositeEnd) {
+			String joinColumn, Integer oppositeEnd) {
 		super(name, type, visibility, lower, upper, isUnique, isNullable);
 		this.fetchType = fetchType;
 		this.cascade = cascade;
 		this.columnName = columnName;
 		this.joinTable = joinTable;
+		this.joinColumn = joinColumn;
 		this.oppositeEnd = oppositeEnd;
+	}
+	
+	public String getJoinColumn() {
+		return joinColumn;
+	}
+
+	public void setJoinColumn(String joinColumn) {
+		this.joinColumn = joinColumn;
 	}
 
 	public FetchType getFetchType() {
@@ -57,7 +67,4 @@ public class FMReferencedProperty extends FMProperty {
 	public void setOppositeEnd(Integer oppositeEnd) {
 		this.oppositeEnd = oppositeEnd;
 	}
-	
-	
-	
 }

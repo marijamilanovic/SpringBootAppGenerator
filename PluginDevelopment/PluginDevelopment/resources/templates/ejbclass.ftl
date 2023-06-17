@@ -33,8 +33,8 @@ ${class.visibility} class ${class.name}{
 	<#if prop.strategy == "AUTO" || prop.strategy  == "IDENTITY" >
 	@GeneratedValue(strategy = GenerationType.${prop.strategy})
 <#elseif prop.strategy == "SEQUENCE">
-	@GeneratedValue(strategy = GenerationType.${prop.strategy}, generator = "${name?lower_case}_generator")
-	@SequenceGenerator(name = "${name?lower_case}_generator", sequenceName = "${name?lower_case}_seq")		
+	@GeneratedValue(strategy = GenerationType.${prop.strategy}, generator = "${class.name?lower_case}_generator")
+	@SequenceGenerator(name = "${class.name?lower_case}_generator", sequenceName = "${class.name?lower_case}_seq")		
 </#if>
 <#else>
 
@@ -44,6 +44,7 @@ ${class.visibility} class ${class.name}{
 </#list>
 
 <#list referencedProperties as property>
+
 <#if property.upper == -1 && property.oppositeEnd == -1>
     @ManyToMany
 	<#elseif property.upper == -1 && property.oppositeEnd == 1>
@@ -53,18 +54,16 @@ ${class.visibility} class ${class.name}{
 	<#else>
     @OneToOne
 	</#if>
-    <#if (property.fetch)?? || (property.cascade)?? || (property.mappedBy)?? || (property.optional)?? >
+    <#if (property.fetchType)?? || (property.cascade)?? || (property.mappedBy)?? || (property.optional)?? >
     (
 		<#if (property.cascade)??>
         cascade = CascadeType.${property.cascade}
 		</#if>
-		<#if (property.fetch)??>
-			<#lt><#if (property.cascade)??>,
-			</#if>
-        fetch = FetchType.${property.fetch}
+		<#if (property.fetchType)??>
+        fetch = FetchType.${property.fetchType}
 			</#if>
 		<#if (property.mappedBy)??>
-			<#lt><#if (property.cascade)?? || (property.fetch)??>,
+			<#lt><#if (property.cascade)?? || (property.fetchType)??>,
 			</#if>
         mappedBy = "${property.mappedBy}"
 		</#if>
@@ -73,11 +72,9 @@ ${class.visibility} class ${class.name}{
 	<#if (property.joinTable)??>
     @JoinTable(name="${property.joinTable}")
 	</#if>
-	<#if (property.columnName)??>
-    @JoinColumn(name="${property.columnName}")
+	<#if (property.joinColumn)??>
+    @JoinColumn(name="${property.joinColumn}")
 	</#if>
-    ${property.visibility} <#if property.upper == -1>Set<</#if>${property.type?cap_first}<#if property.upper == -1>></#if> ${property.name?uncap_first};
-	
+    ${property.visibility} <#if property.upper == -1>Set<</#if>${property.type?cap_first}<#if property.upper == -1>></#if> ${property.name?uncap_first};	
 </#list>
-
 }
