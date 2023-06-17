@@ -218,7 +218,7 @@ public class ModelAnalyzer {
 		}
 
 		if(referencedPropertyStereotype != null) {
-			referencedProperty = createReferencedProperty(fmProperty, p, referencedPropertyStereotype);
+			referencedProperty = createReferencedProperty(fmProperty, p, referencedPropertyStereotype, cl);
 		}
 		
 		return referencedProperty;
@@ -262,13 +262,14 @@ public class ModelAnalyzer {
 		return new FMPersistenceProperty(prop, columnName, length, precision, strategy);
 	}
 	
-	private FMReferencedProperty createReferencedProperty(FMProperty prop, Property p, Stereotype referencedProperty) {
+	private FMReferencedProperty createReferencedProperty(FMProperty prop, Property p, Stereotype referencedProperty, Class cl) {
 		// TODO Auto-generated method stub
 		FetchType fetchType = null;
 		CascadeType cascadeType = null;
 		String joinTable = null;
 		String columnName = null;
 		String joinColumn = null;
+		String mappedBy = null;
 		int upper = p.getUpper();
 		Integer oppositeEnd = p.getOpposite().getUpper();
 		
@@ -276,6 +277,10 @@ public class ModelAnalyzer {
 			prop.setName(prop.getType().toLowerCase().concat("s"));
 		}else if (prop.getName().equals("")) {
 			prop.setName(Character.toLowerCase(prop.getType().charAt(0)) + prop.getType().substring(1));
+		}
+		
+		if (!referencedProperty.getName().equals("ManyToOne")) {
+			mappedBy = Character.toLowerCase(cl.getName().charAt(0)) + cl.getName().substring(1);
 		}
 		
 		// Retrieve tagged values from ReferencedProperty and its derived stereotypes
@@ -323,7 +328,7 @@ public class ModelAnalyzer {
 		}
 		
 		return new FMReferencedProperty(prop.getName(), prop.getType(), prop.getVisibility().toString(),  prop.getLower(), prop.getUpper(),
-				prop.getIsUnique(), prop.getIsNullable(), fetchType, cascadeType, columnName, joinTable, joinColumn, oppositeEnd);
+				prop.getIsUnique(), prop.getIsNullable(), fetchType, cascadeType, columnName, joinTable, joinColumn, mappedBy, oppositeEnd);
 	}
 
 	private FMEnumeration getEnumerationData(Enumeration enumeration, String packageName) throws AnalyzeException {
