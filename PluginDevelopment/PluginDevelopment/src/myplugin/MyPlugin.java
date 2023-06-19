@@ -33,6 +33,11 @@ public class MyPlugin extends com.nomagic.magicdraw.plugins.Plugin {
 		ProjectOptions.getProjectOptions().getGeneratorOptions().put("EJBGenerator", ejbOptions);
 		ejbOptions.setTemplateDir(pluginDir + File.separator + ejbOptions.getTemplateDir()); //apsolutna putanja
 		
+		//Dto
+		GeneratorOptions dtoOptions = new GeneratorOptions("c:/temp/mbrs/src/main/java", "dto", "templates", "{0}Dto.java", true, "uns.ftn.mbrs.dto");
+		ProjectOptions.getProjectOptions().getGeneratorOptions().put("DtoGenerator", dtoOptions);
+		dtoOptions.setTemplateDir(pluginDir + File.separator + dtoOptions.getTemplateDir());
+				
 		//Controller
 		GeneratorOptions controllerOptions = new GeneratorOptions("c:/temp/mbrs/src/main/java", "controller", "templates", "{0}Controller.java", true, "uns.ftn.mbrs.controller");
 		ProjectOptions.getProjectOptions().getGeneratorOptions().put("ControllerGenerator", controllerOptions);

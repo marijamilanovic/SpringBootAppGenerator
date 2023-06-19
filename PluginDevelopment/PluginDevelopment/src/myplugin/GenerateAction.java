@@ -20,6 +20,7 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
 import myplugin.analyzer.AnalyzeException;
 import myplugin.analyzer.ModelAnalyzer;
 import myplugin.generator.ControllerGenerator;
+import myplugin.generator.DtoGenerator;
 import myplugin.generator.EJBGenerator;
 import myplugin.generator.RepositoryGenerator;
 import myplugin.generator.ServiceGenerator;
@@ -48,6 +49,7 @@ class GenerateAction extends MDAction{
 		
 		try {
 			generateModel(root);
+			generateDto(root);
 			/*generateController(root);
 			generateService(root);
 			generateServiceImpl(root);
@@ -67,6 +69,14 @@ class GenerateAction extends MDAction{
 		GeneratorOptions generatorOptions = ProjectOptions.getProjectOptions().getGeneratorOptions().get("EJBGenerator");
 		EJBGenerator ejbGenerator = new EJBGenerator(generatorOptions);
 		ejbGenerator.generate();
+	}
+	
+	private void generateDto(Package root) throws AnalyzeException {
+		ModelAnalyzer analyzer = new ModelAnalyzer(root, "uns.ftn.mbrs.dto");
+		analyzer.prepareModel();
+		GeneratorOptions generatorOptions = ProjectOptions.getProjectOptions().getGeneratorOptions().get("DtoGenerator");
+		DtoGenerator dtoGenerator = new DtoGenerator(generatorOptions);
+		dtoGenerator.generate();
 	}
 
 	private void generateController(Package root) throws AnalyzeException {
