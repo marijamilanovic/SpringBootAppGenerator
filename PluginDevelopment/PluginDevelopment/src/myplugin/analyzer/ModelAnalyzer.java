@@ -12,6 +12,8 @@ import myplugin.generator.fmmodel.FMPersistenceProperty;
 import myplugin.generator.fmmodel.FMProperty;
 import myplugin.generator.fmmodel.FMReferencedProperty;
 import myplugin.generator.fmmodel.FetchType;
+import myplugin.generator.fmmodel.RepositoryType;
+import myplugin.generator.fmmodel.RequestMethod;
 import myplugin.generator.fmmodel.Strategy;
 
 import com.nomagic.uml2.ext.jmi.helpers.ModelHelper;
@@ -84,8 +86,14 @@ public class ModelAnalyzer {
 				
 				if (ownedElement instanceof Enumeration) {
 					Enumeration en = (Enumeration)ownedElement;
-					FMEnumeration fmEnumeration = getEnumerationData(en, packageName);
-					FMModel.getInstance().getEnumerations().add(fmEnumeration);
+					
+					if (!en.getName().equals(CascadeType.class.getSimpleName()) && !en.getName().equals(Strategy.class.getSimpleName())
+							&& !en.getName().equals(FetchType.class.getSimpleName()) && !en.getName().equals(RequestMethod.class.getSimpleName())
+									&& !en.getName().equals(RepositoryType.class.getSimpleName())) {
+						FMEnumeration fmEnumeration = getEnumerationData(en, packageName);
+						FMModel.getInstance().getEnumerations().add(fmEnumeration);
+					}
+					
 				}								
 			}
 			
