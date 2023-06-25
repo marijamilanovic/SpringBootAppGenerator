@@ -20,7 +20,9 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
 import myplugin.analyzer.AnalyzeException;
 import myplugin.analyzer.ModelAnalyzer;
 import myplugin.generator.ControllerGenerator;
+import myplugin.generator.DtoGenerator;
 import myplugin.generator.EJBGenerator;
+import myplugin.generator.EnumGenerator;
 import myplugin.generator.RepositoryGenerator;
 import myplugin.generator.ServiceGenerator;
 import myplugin.generator.ServiceImplGenerator;
@@ -48,6 +50,8 @@ class GenerateAction extends MDAction{
 		
 		try {
 			generateModel(root);
+//			generateDto(root);
+			generateEnum(root);
 			/*generateController(root);
 			generateService(root);
 			generateServiceImpl(root);
@@ -66,7 +70,24 @@ class GenerateAction extends MDAction{
 		analyzer.prepareModel();
 		GeneratorOptions generatorOptions = ProjectOptions.getProjectOptions().getGeneratorOptions().get("EJBGenerator");
 		EJBGenerator ejbGenerator = new EJBGenerator(generatorOptions);
+		System.out.println(generatorOptions.getTemplateDir());
 		ejbGenerator.generate();
+	}
+	
+	private void generateDto(Package root) throws AnalyzeException {
+		ModelAnalyzer analyzer = new ModelAnalyzer(root, "uns.ftn.mbrs.dto");
+		analyzer.prepareModel();
+		GeneratorOptions generatorOptions = ProjectOptions.getProjectOptions().getGeneratorOptions().get("DtoGenerator");
+		DtoGenerator dtoGenerator = new DtoGenerator(generatorOptions);
+		dtoGenerator.generate();
+	}
+	
+	private void generateEnum(Package root) throws AnalyzeException {
+		ModelAnalyzer analyzer = new ModelAnalyzer(root, "uns.ftn.mbrs.model");
+		analyzer.prepareModel();
+		GeneratorOptions generatorOptions = ProjectOptions.getProjectOptions().getGeneratorOptions().get("EnumGenerator");
+		EnumGenerator enumGenerator = new EnumGenerator(generatorOptions);
+		enumGenerator.generate();
 	}
 
 	private void generateController(Package root) throws AnalyzeException {

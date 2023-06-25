@@ -28,5 +28,15 @@ public class FMEnumeration extends FMType {
 	public String getValueAt(int i){
 		return Values.get(i);
 	}
+
+	public ArrayList<String> getValues() {
+		return Values;
+	}
+
+	public void setValues(ArrayList<String> values) {
+		Values = values;
+	}
+	
+	
 	
 }

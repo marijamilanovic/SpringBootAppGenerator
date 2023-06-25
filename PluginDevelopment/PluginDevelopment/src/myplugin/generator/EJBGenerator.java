@@ -50,7 +50,6 @@ public class EJBGenerator extends BasicGenerator {
 				if (out != null) {
 					context.clear();
 					context.put("class", cl);
-					//context.put("properties", cl.getProperties());
 					context.put("importedPackages", cl.getImportedPackages());
 					context.put("referencedProperties", cl.getReferencedProperties());
 					List<FMProperty> persistentProperties = new ArrayList<FMProperty>();
