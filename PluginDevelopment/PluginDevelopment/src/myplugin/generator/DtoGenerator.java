@@ -36,11 +36,6 @@ public class DtoGenerator extends BasicGenerator {
 
 	    List<FMClass> classes = FMModel.getInstance().getClasses();
 	    for (FMClass cl : classes) {
-	    	System.out.println("**********************");
-	    	System.out.println(cl.getClass().getName());
-	    
-	    	System.out.println("**********************");
-//	        if (dto != null) {
 	            Writer out;
 	            Map<String, Object> context = new HashMap<String, Object>();
 	            try {
@@ -81,7 +76,6 @@ public class DtoGenerator extends BasicGenerator {
 	                JOptionPane.showMessageDialog(null, e.getMessage());
 	            }
 	        }
-//	    }
 	}
 }
 

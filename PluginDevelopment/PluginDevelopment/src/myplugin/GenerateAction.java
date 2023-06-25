@@ -50,7 +50,7 @@ class GenerateAction extends MDAction{
 		
 		try {
 			generateModel(root);
-//			generateDto(root);
+			generateDto(root);
 			generateEnum(root);
 			/*generateController(root);
 			generateService(root);

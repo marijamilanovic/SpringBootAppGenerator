@@ -14,6 +14,10 @@ public class ${class.name}DTO {
     private ${property.type} ${property.name};
     
     </#list>
+     <#list persistentProperties as persistenProperty>
+    private ${persistenProperty.type} ${persistenProperty.name};
+    
+    </#list>
     <#list referencedProperties as property>
     private <#if property.upper == -1>Set<</#if>${property.type?cap_first}DTO<#if property.upper == -1>></#if> ${property.name?uncap_first};
     </#list>
