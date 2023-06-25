@@ -40,7 +40,7 @@ public class MyPlugin extends com.nomagic.magicdraw.plugins.Plugin {
 		dtoOptions.setTemplateDir(pluginDir + File.separator + dtoOptions.getTemplateDir());
 		
 		//Enum
-		GeneratorOptions enumOptions = new GeneratorOptions("c:/temp/mbrs/src/main/java", "proba", "templates", "{0}.java", true, "uns.ftn.mbrs.model");
+		GeneratorOptions enumOptions = new GeneratorOptions("c:/temp/mbrs/src/main/java", "enum", "templates", "{0}.java", true, "uns.ftn.mbrs.model");
 		ProjectOptions.getProjectOptions().getGeneratorOptions().put("EnumGenerator", enumOptions);
 		System.out.println("ENUM DIR " + enumOptions.getTemplateDir());
 		enumOptions.setTemplateDir(pluginDir + File.separator + enumOptions.getTemplateDir());
