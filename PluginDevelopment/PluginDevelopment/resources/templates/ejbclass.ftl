@@ -54,7 +54,7 @@ ${class.visibility} class ${class.name} {
     <#else>
     @OneToOne
     </#if>
-    <#if (property.fetchType)?? || (property.cascade)?? || (property.mappedBy)?? || (property.optional)??>(<#if (property.cascade)??>cascade = CascadeType.${property.cascade}</#if><#if (property.fetchType)??>fetch = FetchType.${property.fetchType}</#if><#if (property.mappedBy)??><#if (property.cascade)?? || (property.fetchType)??>, </#if>mappedBy = "${property.mappedBy}"</#if>)
+    <#if (property.fetchType)?? || (property.cascade)?? || (property.mappedBy)?? || (property.optional)??>(<#if (property.cascade)??>cascade = CascadeType.${property.cascade}</#if><#if (property.fetchType)??>, fetch = FetchType.${property.fetchType}</#if><#if (property.mappedBy)??><#if (property.cascade)?? || (property.fetchType)??>, </#if>mappedBy = "${property.mappedBy}"</#if>)
     </#if>
     <#if (property.joinTable)??>
     @JoinTable(name = "${property.joinTable}")
