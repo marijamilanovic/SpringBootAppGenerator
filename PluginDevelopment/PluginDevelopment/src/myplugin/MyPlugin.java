@@ -31,8 +31,20 @@ public class MyPlugin extends com.nomagic.magicdraw.plugins.Plugin {
 		//for test purpose only:
 		GeneratorOptions ejbOptions = new GeneratorOptions("c:/temp/mbrs/src/main/java", "ejbclass", "templates", "{0}.java", true, "ejb"); 				
 		ProjectOptions.getProjectOptions().getGeneratorOptions().put("EJBGenerator", ejbOptions);
+		System.out.println("EJB DIR " + ejbOptions.getTemplateDir());
 		ejbOptions.setTemplateDir(pluginDir + File.separator + ejbOptions.getTemplateDir()); //apsolutna putanja
 		
+		//Dto
+		GeneratorOptions dtoOptions = new GeneratorOptions("c:/temp/mbrs/src/main/java", "dto", "templates", "{0}Dto.java", true, "uns.ftn.mbrs.dto");
+		ProjectOptions.getProjectOptions().getGeneratorOptions().put("DtoGenerator", dtoOptions);
+		dtoOptions.setTemplateDir(pluginDir + File.separator + dtoOptions.getTemplateDir());
+		
+		//Enum
+		GeneratorOptions enumOptions = new GeneratorOptions("c:/temp/mbrs/src/main/java", "enum", "templates", "{0}.java", true, "uns.ftn.mbrs.model");
+		ProjectOptions.getProjectOptions().getGeneratorOptions().put("EnumGenerator", enumOptions);
+		System.out.println("ENUM DIR " + enumOptions.getTemplateDir());
+		enumOptions.setTemplateDir(pluginDir + File.separator + enumOptions.getTemplateDir());
+				
 		//Controller
 		GeneratorOptions controllerOptions = new GeneratorOptions("c:/temp/mbrs/src/main/java", "controller", "templates", "{0}Controller.java", true, "uns.ftn.mbrs.controller");
 		ProjectOptions.getProjectOptions().getGeneratorOptions().put("ControllerGenerator", controllerOptions);
