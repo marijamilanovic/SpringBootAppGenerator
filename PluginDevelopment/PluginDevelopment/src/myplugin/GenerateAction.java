@@ -23,6 +23,7 @@ import myplugin.generator.ControllerGenerator;
 import myplugin.generator.DtoGenerator;
 import myplugin.generator.EJBGenerator;
 import myplugin.generator.EnumGenerator;
+import myplugin.generator.MapperGenerator;
 import myplugin.generator.RepositoryGenerator;
 import myplugin.generator.ServiceGenerator;
 import myplugin.generator.ServiceImplGenerator;
@@ -52,6 +53,7 @@ class GenerateAction extends MDAction{
 			generateModel(root);
 			generateDto(root);
 			generateEnum(root);
+			generateMapper(root);
 			/*generateController(root);
 			generateService(root);
 			generateServiceImpl(root);
@@ -80,6 +82,14 @@ class GenerateAction extends MDAction{
 		GeneratorOptions generatorOptions = ProjectOptions.getProjectOptions().getGeneratorOptions().get("DtoGenerator");
 		DtoGenerator dtoGenerator = new DtoGenerator(generatorOptions);
 		dtoGenerator.generate();
+	}
+	
+	private void generateMapper(Package root) throws AnalyzeException {
+		ModelAnalyzer analyzer = new ModelAnalyzer(root, "uns.ftn.mbrs.mappers");
+		analyzer.prepareModel();
+		GeneratorOptions generatorOptions = ProjectOptions.getProjectOptions().getGeneratorOptions().get("MapperGenerator");
+		MapperGenerator mapperGenerator = new MapperGenerator(generatorOptions);
+		mapperGenerator.generate();
 	}
 	
 	private void generateEnum(Package root) throws AnalyzeException {
