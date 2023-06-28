@@ -29,9 +29,11 @@ public class MapperGenerator extends BasicGenerator {
 	    }
 
 	    List<FMClass> classes = FMModel.getInstance().getClasses();
+	    
 	    for (FMClass cl : classes) {
 	            Writer out;
 	            Map<String, Object> context = new HashMap<String, Object>();
+	            
 	            try {
 	                out = getWriter(cl.getName(), cl.getTypePackage());
 	                if (out != null) {
@@ -48,6 +50,7 @@ public class MapperGenerator extends BasicGenerator {
 	                            imports.add(import_str);
 	                        }
 	                    }
+	                    
 	                    context.put("imports", imports);
 	                    getTemplate().process(context, out);
 	                    out.flush();

@@ -15,7 +15,7 @@ import org.mapstruct.Mapper;
 public interface ${class.name}Mapper {
 	${class.name}Dto ${class.name?substring(0,1)?lower_case}${class.name?substring(1)}To${class.name}Dto(${class.name} ${class.name?substring(0,1)?lower_case}${class.name?substring(1)});
 	
-	${class.name} ${class.name?substring(0,1)?lower_case}${class.name?substring(1)}To${class.name}Dto(${class.name}Dto ${class.name?substring(0,1)?lower_case}${class.name?substring(1)}Dto);
+	${class.name} ${class.name?substring(0,1)?lower_case}${class.name?substring(1)}DtoTo${class.name}(${class.name}Dto ${class.name?substring(0,1)?lower_case}${class.name?substring(1)}Dto);
 
 	<#if class.name?ends_with("y")>
 	List<${class.name}DTO> ${class.name?substring(0,1)?lower_case}${class.name?substring(1, class.name?length-1)}iesTo${class.name?substring(0, class.name?length-1)}iesDTOs(List<${class.name}> ${class.name?substring(0,1)?lower_case}${class.name?substring(1, class.name?length-1)}ies);
