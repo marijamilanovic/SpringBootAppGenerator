@@ -39,7 +39,7 @@ ${class.visibility} class ${class.name} {
     </#if>
     <#else>
 
-    @Column(name = "${prop.name?lower_case}", <#if (prop.length)??>length = ${prop.length}, </#if><#if (prop.precision)??>precision = ${prop.precision}, </#if>nullable = <#if prop.lower == 0>false<#else>true</#if>, unique = <#if prop.isUnique>true<#else>false</#if>)
+    @Column(name = "${prop.name?lower_case}", <#if (prop.length)??>length = ${prop.length}, </#if><#if (prop.precision)??>precision = ${prop.precision}, </#if>nullable = <#if prop.lower == 1>false<#else>true</#if>, unique = <#if prop.isUnique>true<#else>false</#if>)
     </#if>
     ${prop.visibility} ${prop.type} ${prop.name};
     </#list>
@@ -48,13 +48,16 @@ ${class.visibility} class ${class.name} {
     <#if property.upper == -1 && property.oppositeEnd == -1>
     @ManyToMany
     <#elseif property.upper == -1 && property.oppositeEnd == 1>
+    
     @OneToMany
     <#elseif property.upper == 1 && property.oppositeEnd == -1>
+    
     @ManyToOne
     <#else>
+    
     @OneToOne
     </#if>
-    <#if (property.fetchType)?? || (property.cascade)?? || (property.mappedBy)?? || (property.optional)??>(<#if (property.cascade)??>cascade = CascadeType.${property.cascade}</#if><#if (property.fetchType)??>, fetch = FetchType.${property.fetchType}</#if><#if (property.mappedBy)??><#if (property.cascade)?? || (property.fetchType)??>, </#if>mappedBy = "${property.mappedBy}"</#if>)
+    <#if (property.fetchType)?? || (property.cascade)?? || (property.mappedBy)?? || (property.optional)??>(<#if (property.cascade)??>cascade = CascadeType.${property.cascade}</#if><#if (property.fetchType)??><#if (property.cascade)??>, </#if>fetch = FetchType.${property.fetchType}</#if><#if (property.mappedBy)??><#if (property.cascade)?? || (property.fetchType)??>, </#if>mappedBy = "${property.mappedBy}"</#if>)
     </#if>
     <#if (property.joinTable)??>
     @JoinTable(name = "${property.joinTable}")
