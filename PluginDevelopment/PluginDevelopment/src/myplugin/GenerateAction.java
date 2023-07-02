@@ -54,10 +54,10 @@ class GenerateAction extends MDAction{
 			generateDto(root);
 			generateEnum(root);
 			generateMapper(root);
-			/*generateController(root);
-			generateService(root);
-			generateServiceImpl(root);
-			generateRepository(root);*/
+//			generateController(root);
+//			generateService(root);
+//			generateServiceImpl(root);
+			generateRepository(root);
 			
 			/**  @ToDo: Also call other generators */ 
 			JOptionPane.showMessageDialog(null, "Code is successfully generated! Generated code is in folder: C:/temp ");
