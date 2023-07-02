@@ -24,6 +24,7 @@ import myplugin.generator.DtoGenerator;
 import myplugin.generator.EJBGenerator;
 import myplugin.generator.EnumGenerator;
 import myplugin.generator.MapperGenerator;
+import myplugin.generator.PomGenerator;
 import myplugin.generator.RepositoryGenerator;
 import myplugin.generator.ServiceGenerator;
 import myplugin.generator.ServiceImplGenerator;
@@ -58,6 +59,7 @@ class GenerateAction extends MDAction{
 			generateService(root);
 			generateServiceImpl(root);
 			generateRepository(root);
+			generatePom(root);
 			
 			/**  @ToDo: Also call other generators */ 
 			JOptionPane.showMessageDialog(null, "Code is successfully generated! Generated code is in folder: C:/temp ");
@@ -132,7 +134,14 @@ class GenerateAction extends MDAction{
 		GeneratorOptions generatorOptions = ProjectOptions.getProjectOptions().getGeneratorOptions().get("RepositoryGenerator");
 		RepositoryGenerator repositoryGenerator = new RepositoryGenerator(generatorOptions);
 		repositoryGenerator.generate();
-
+	}
+	
+	private void generatePom(Package root) throws AnalyzeException {
+		ModelAnalyzer analyzer = new ModelAnalyzer(root,"");
+		analyzer.prepareModel();
+		GeneratorOptions generatorOptions = ProjectOptions.getProjectOptions().getGeneratorOptions().get("PomGenerator");
+		PomGenerator pomGenerator = new PomGenerator(generatorOptions);
+		pomGenerator.generate();
 	}
 
 
