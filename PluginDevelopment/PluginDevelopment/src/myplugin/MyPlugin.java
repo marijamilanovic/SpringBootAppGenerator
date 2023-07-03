@@ -66,7 +66,7 @@ public class MyPlugin extends com.nomagic.magicdraw.plugins.Plugin {
 		
 		//Repository
 		GeneratorOptions repositoryOptions = new GeneratorOptions("c:/temp/mbrs/src/main/java", "repository", "templates", "{0}Repository.java", true, "uns.ftn.mbrs.repository");
-		ProjectOptions.getProjectOptions().getGeneratorOptions().put("RepoGenerator", repositoryOptions);
+		ProjectOptions.getProjectOptions().getGeneratorOptions().put("RepositoryGenerator", repositoryOptions);
 		repositoryOptions.setTemplateDir(pluginDir + File.separator + repositoryOptions.getTemplateDir());
 
 	}
