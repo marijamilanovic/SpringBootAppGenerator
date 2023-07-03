@@ -49,6 +49,11 @@ public class MyPlugin extends com.nomagic.magicdraw.plugins.Plugin {
 		GeneratorOptions mainClassOptions = new GeneratorOptions("c:/temp/mbrs/src/main/java", "main", "templates", "{0}Application.java", true, "uns.ftn.mbrs");
 		ProjectOptions.getProjectOptions().getGeneratorOptions().put("MainClassGenerator", mainClassOptions);
 		mainClassOptions.setTemplateDir(pluginDir + File.separator + mainClassOptions.getTemplateDir());
+
+		//Mapper
+		GeneratorOptions mapperOptions = new GeneratorOptions("c:/temp/mbrs/src/main/java", "mapper", "templates", "{0}Mapper.java", true, "uns.ftn.mbrs.mappers");
+		ProjectOptions.getProjectOptions().getGeneratorOptions().put("MapperGenerator", mapperOptions);
+		mapperOptions.setTemplateDir(pluginDir + File.separator + mapperOptions.getTemplateDir());
 				
 		//Controller
 		GeneratorOptions controllerOptions = new GeneratorOptions("c:/temp/mbrs/src/main/java", "controller", "templates", "{0}Controller.java", true, "uns.ftn.mbrs.controller");
@@ -66,8 +71,13 @@ public class MyPlugin extends com.nomagic.magicdraw.plugins.Plugin {
 		
 		//Repository
 		GeneratorOptions repositoryOptions = new GeneratorOptions("c:/temp/mbrs/src/main/java", "repository", "templates", "{0}Repository.java", true, "uns.ftn.mbrs.repository");
-		ProjectOptions.getProjectOptions().getGeneratorOptions().put("RepoGenerator", repositoryOptions);
+		ProjectOptions.getProjectOptions().getGeneratorOptions().put("RepositoryGenerator", repositoryOptions);
 		repositoryOptions.setTemplateDir(pluginDir + File.separator + repositoryOptions.getTemplateDir());
+		
+		//Pom
+		GeneratorOptions pomOptions = new GeneratorOptions("c:/temp/mbrs", "pom", "templates", "pom.xml", true, "");
+		ProjectOptions.getProjectOptions().getGeneratorOptions().put("PomGenerator", pomOptions);
+		pomOptions.setTemplateDir(pluginDir + File.separator + pomOptions.getTemplateDir());
 
 	}
 
