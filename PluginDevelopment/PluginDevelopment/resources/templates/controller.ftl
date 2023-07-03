@@ -1,45 +1,51 @@
 package ${class.typePackage};
 
 import java.util.List;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import lombok.RequiredArgsConstructor;
+import org.springframework.ui.Model;
+
 import ${class.typePackage?keep_before(".")}.model.${class.name};
 import ${class.typePackage?keep_before(".")}.service.${class.name}Service;
 
 @RestController
 @RequestMapping("/${class.name?lower_case}")
 @RequiredArgsConstructor
-public class ${class.name}Controller {
+public class ${class.name?cap_first}Controller {
 
+	@Autowired
     private final ${class.name?cap_first}Service ${serviceName}?lower_case;
     
     @GetMapping("/{id}")
-    public <${class.name}> getById (@PathVariable Long id) throws Exception {
+    public ResponseEntity<Optional<${class.name}Dto>> getById (@PathVariable Long id) throws Exception {
         ${class.name} ${class.name?uncap_first} = ${serviceName}?lower_case.getById(id);
         return ${class.name?uncap_first};
+        return ${class.name?uncap_first} == null ? new ResponseEntity<>(HttpStatus.NOT_FOUND) : ResponseEntity.ok(${class.name?uncap_first});
     }
 
     @GetMapping("/all")
-    public <List<${class.name}> getAll() {
+    public ResponseEntity<List<Optional<${class.name}Dto>>> getAll() {
         List<${class.name}> ${class.name?uncap_first}s = ${serviceName}?lower_case.getAll();
-        return "${class.name}s";
+        return ${class.name?uncap_first}s == null ? new ResponseEntity<>(HttpStatus.NOT_FOUND) : ResponseEntity.ok(${class.name?uncap_first}s);
+
     }
     
     @PostMapping("/save")
-    public <${class.name}> save(${class.name} ${class.name?uncap_first}}) {
+    public ResponseEntity<Optional<${class.name}Dto>> save(@RequestBody ${class.name} ${class.name?uncap_first}}) {
         ${class.name} ${class.name} = ${serviceName}?lower_case.save(${class.name?uncap_first});
-        return "${class.name}";
+        return ${class.name?uncap_first} == null ? new ResponseEntity<>(HttpStatus.NOT_FOUND) : ResponseEntity.ok(${class.name?uncap_first});
     }
     
     @PostMapping("/update/{id}")
-    public ${class.name} update(@PathVariable Long id, ${class.name} ${class.name?uncap_first}) {
+    public ResponseEntity<Optional<${class.name}Dto>> update(@PathVariable Long id, @RequestBody ${class.name} ${class.name?uncap_first}) {
         ${class.name} ${class.name} = ${serviceName}?lower_case.update(id, ${class.name?uncap_first});
-        return ${class.name};
+        return ${class.name?uncap_first} == null ? new ResponseEntity<>(HttpStatus.NOT_FOUND) : ResponseEntity.ok(${class.name?uncap_first});
     }
 
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public void delete(@PathVariable Long id){
         ${serviceName}?lower_case.delete(id);
     }

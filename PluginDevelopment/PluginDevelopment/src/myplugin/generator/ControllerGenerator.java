@@ -17,7 +17,6 @@ public class ControllerGenerator extends BasicGenerator{
 
 	public ControllerGenerator(GeneratorOptions generatorOptions) {
 		super(generatorOptions);
-		// TODO Auto-generated constructor stub
 	}
 	
 	public void generate() {
