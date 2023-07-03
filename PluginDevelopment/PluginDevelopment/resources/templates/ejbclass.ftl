@@ -19,7 +19,9 @@ import ${import};
 @RequiredArgsConstructor
 ${class.visibility} class ${class.name} {
     <#list properties as property>
-
+    <#if property.isEnum>
+    @Enumerated
+    </#if>
     <#if property.upper == 1>
     ${property.visibility} ${property.type} ${property.name};
     <#elseif property.upper == -1>

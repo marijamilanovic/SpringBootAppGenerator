@@ -17,8 +17,8 @@ public class FMProperty extends FMElement  {
 	 * stereotype */
 	private Boolean isUnique;
 	private Boolean isNullable;
+	private Boolean isEnum;
 
-	
 	public FMProperty(String name, String type, String visibility, int lower, int upper, Boolean isUnique, Boolean isNullable) {
 		super(name);
 		this.type = type;
@@ -29,6 +29,18 @@ public class FMProperty extends FMElement  {
 		this.isNullable = isNullable;
 	}
 		
+	public FMProperty(String name, String type, String visibility, Integer lower, Integer upper, Boolean isUnique,
+			Boolean isNullable, Boolean isEnum) {
+		super(name);
+		this.type = type;
+		this.visibility = visibility;
+		this.lower = lower;
+		this.upper = upper;
+		this.isUnique = isUnique;
+		this.isNullable = isNullable;
+		this.isEnum = isEnum;
+	}
+
 	public FMProperty(String name, String type, String visibility, Integer lower, Integer upper) {
 		super(name);
 		this.type = type;
@@ -80,5 +92,13 @@ public class FMProperty extends FMElement  {
 
 	public void setIsNullable(Boolean isNullable) {
 		this.isNullable = isNullable;
+	}
+
+	public Boolean getIsEnum() {
+		return isEnum;
+	}
+
+	public void setIsEnum(Boolean isEnum) {
+		this.isEnum = isEnum;
 	}
 }
