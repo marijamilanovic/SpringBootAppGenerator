@@ -21,7 +21,6 @@ public class ControllerGenerator extends BasicGenerator{
 	}
 	
 	public void generate() {
-
 		try {
 			super.generate();
 		} catch (IOException e) {
