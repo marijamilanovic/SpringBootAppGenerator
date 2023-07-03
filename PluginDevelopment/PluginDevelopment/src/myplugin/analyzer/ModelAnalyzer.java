@@ -343,7 +343,7 @@ public class ModelAnalyzer {
 		FMEnumeration fmEnum = new FMEnumeration(enumeration.getName(), packageName);
 		List<EnumerationLiteral> list = enumeration.getOwnedLiteral();
 		
-		for (int i = 0; i < list.size() - 1; i++) {
+		for (int i = 0; i < list.size(); i++) {
 			EnumerationLiteral literal = list.get(i);
 			
 			if (literal.getName() == null)  
@@ -352,6 +352,7 @@ public class ModelAnalyzer {
 			
 			fmEnum.addValue(literal.getName());
 		}
+		
 		return fmEnum;
 	}	
 	
