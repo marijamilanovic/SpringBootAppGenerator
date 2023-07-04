@@ -23,6 +23,7 @@ import myplugin.generator.ControllerGenerator;
 import myplugin.generator.DtoGenerator;
 import myplugin.generator.EJBGenerator;
 import myplugin.generator.EnumGenerator;
+import myplugin.generator.MainClassGenerator;
 import myplugin.generator.MapperGenerator;
 import myplugin.generator.PomGenerator;
 import myplugin.generator.RepositoryGenerator;
@@ -54,6 +55,7 @@ class GenerateAction extends MDAction{
 			generateModel(root);
 			generateDto(root);
 			generateEnum(root);
+			generateMainClass(root);
 			generateMapper(root);
 			generateController(root);
 			generateService(root);
@@ -74,7 +76,6 @@ class GenerateAction extends MDAction{
 		analyzer.prepareModel();
 		GeneratorOptions generatorOptions = ProjectOptions.getProjectOptions().getGeneratorOptions().get("EJBGenerator");
 		EJBGenerator ejbGenerator = new EJBGenerator(generatorOptions);
-		System.out.println(generatorOptions.getTemplateDir());
 		ejbGenerator.generate();
 	}
 	
@@ -100,6 +101,14 @@ class GenerateAction extends MDAction{
 		GeneratorOptions generatorOptions = ProjectOptions.getProjectOptions().getGeneratorOptions().get("EnumGenerator");
 		EnumGenerator enumGenerator = new EnumGenerator(generatorOptions);
 		enumGenerator.generate();
+	}
+	
+	private void generateMainClass(Package root) throws AnalyzeException {
+		ModelAnalyzer analyzer = new ModelAnalyzer(root, "uns.ftn.mbrs");
+		analyzer.prepareModel();
+		GeneratorOptions generatorOptions = ProjectOptions.getProjectOptions().getGeneratorOptions().get("MainClassGenerator");
+		MainClassGenerator mainClassGenerator = new MainClassGenerator(generatorOptions);
+		mainClassGenerator.generate();
 	}
 
 	private void generateController(Package root) throws AnalyzeException {
