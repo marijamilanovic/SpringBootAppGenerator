@@ -2,9 +2,9 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="src-test"/>
-	<classpathentry kind="lib" path="C:/Users/Kristina/Downloads/freemarker.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Kristina/Downloads/Vezbe/Vezbe/Vezbe 3/VezbePrimer/PluginDevelopment/lib/xstream-1.3.1.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/MAGIC_DRAW"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/Kristina/Desktop/MBRS/PluginDevelopment/PluginDevelopment/lib/freemarker.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Kristina/Desktop/MBRS/PluginDevelopment/PluginDevelopment/lib/xstream-1.3.1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/MAGIC_DRAW"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
