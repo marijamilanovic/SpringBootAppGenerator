@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import uns.ftn.mbrs.model.*;
 import uns.ftn.mbrs.service.*;
 import uns.ftn.mbrs.repository.*;
+import uns.ftn.mbrs.mappers.*;
+import uns.ftn.mbrs.dto.*;
 
 import javax.persistence.EntityNotFoundException;
 
@@ -18,25 +20,32 @@ public class ${class.name}ServiceImpl implements ${class.name}Service {
 	@Autowired
 	private ${class.name}Repository ${class.name?uncap_first}Repository;
 	
+	@Autowired
+	private ${class.name}Mapper ${class.name?uncap_first}Mapper;
+	
 	
 	@Override
-	public ${class.name} save(${class.name} ${class.name?uncap_first}) {
-		return ${class.name?uncap_first}Repository.save(${class.name?uncap_first});
+	public ${class.name}Dto save(${class.name} ${class.name?uncap_first}) {
+		${class.name} saved${class.name} = ${class.name?uncap_first}Repository.save(${class.name?uncap_first});
+		return ${class.name?uncap_first}To${class.name}Dto(saved${class.name});
+	}
+
+	@Override
+	public ${class.name}Dto update(${class.name} ${class.name?uncap_first}) {
+		${class.name} saved${class.name} = ${class.name?uncap_first}Repository.save(${class.name?uncap_first});
+		return ${class.name?uncap_first}To${class.name}Dto(saved${class.name});
 	}
 	
 	@Override
-	public ${class.name} update(${class.name} ${class.name?uncap_first}) {
-		return ${class.name?uncap_first}Repository.save(${class.name?uncap_first});
+	public List<${class.name}Dto> getAll() {
+		List<${class.name}> ${class.name?uncap_first}s = ${class.name?uncap_first}Repository.findAll();
+		return ${class.name?uncap_first}sTo${class.name}Dtos(${class.name?uncap_first}s);
 	}
 	
 	@Override
-	public List<${class.name}> getAll() {
-		return ${class.name?uncap_first}Repository.findAll();
-	}
-	
-	@Override
-	public Optional<${class.name}> getById(Long id) {
-		return ${class.name?uncap_first}Repository.findById(id);
+	public Optional<${class.name}Dto> getById(Long id) {
+		${class.name} ${class.name} = ${class.name?uncap_first}Repository.findById(id);
+		return ${class.name?uncap_first}To${class.name}Dto(${class.name});
 	}
 	
 	@Override
