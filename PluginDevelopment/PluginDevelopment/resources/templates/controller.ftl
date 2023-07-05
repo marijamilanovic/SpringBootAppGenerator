@@ -22,7 +22,7 @@ public class ${class.name?cap_first}Controller {
 	
     @GetMapping("/{id}")
     public ResponseEntity<Optional<${class.name}Dto>> getById (@PathVariable Long id) throws Exception {
-        ${class.name} ${class.name?uncap_first}Dto = ${class.name?lower_case}Service.getById(id);
+        ${class.name}Dto ${class.name?uncap_first}Dto = ${class.name?lower_case}Service.getById(id);
         return ${class.name?uncap_first}Dto == null ? new ResponseEntity<>(HttpStatus.NOT_FOUND) : ResponseEntity.ok(${class.name?uncap_first}Dto);
     }
 
@@ -34,14 +34,14 @@ public class ${class.name?cap_first}Controller {
     }
     
     @PostMapping("/save")
-    public ResponseEntity<Optional<${class.name}Dto>> save(@RequestBody ${class.name} ${class.name?uncap_first}}) {
-        ${class.name}Dto ${class.name?uncap_first}Dto = ${class.name?lower_case}Service.save(${class.name?uncap_first});
+    public ResponseEntity<Optional<${class.name}Dto>> save(@RequestBody ${class.name}Dto ${class.name?uncap_first}Dto}) {
+        ${class.name}Dto ${class.name?uncap_first}Dto = ${class.name?lower_case}Service.save(${class.name?uncap_first}Dto);
         return ${class.name?uncap_first}Dto == null ? new ResponseEntity<>(HttpStatus.NOT_FOUND) : ResponseEntity.ok(${class.name?uncap_first}Dto);
     }
     
     @PostMapping("/update/{id}")
-    public ResponseEntity<Optional<${class.name}Dto>> update(@PathVariable Long id, @RequestBody ${class.name} ${class.name?uncap_first}) {
-        ${class.name}Dto ${class.name?uncap_first}Dto = ${class.name?lower_case}Service.update(id, ${class.name?uncap_first});
+    public ResponseEntity<Optional<${class.name}Dto>> update(@PathVariable Long id, @RequestBody ${class.name}Dto ${class.name?uncap_first}Dto) {
+        ${class.name}Dto ${class.name?uncap_first}Dto = ${class.name?lower_case}Service.update(id, ${class.name?uncap_first}Dto);
         return ${class.name?uncap_first}Dto == null ? new ResponseEntity<>(HttpStatus.NOT_FOUND) : ResponseEntity.ok(${class.name?uncap_first}Dto);
     }
 
