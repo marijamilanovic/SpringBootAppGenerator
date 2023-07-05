@@ -41,17 +41,6 @@ public class MapperGenerator extends BasicGenerator {
 	                    context.put("class", cl);
 	                    context.put("importedPackages", cl.getImportedPackages());
 	                    
-	                    ArrayList<String> imports = new ArrayList<>();
-	                    String import_str = "";
-	                    
-	                    for (FMProperty p : cl.getReferencedProperties()) {
-	                        import_str = cl.getTypePackage() + "." + p.getType();
-	                        if (!imports.contains(import_str) && import_str != "") {
-	                            imports.add(import_str);
-	                        }
-	                    }
-	                    
-	                    context.put("imports", imports);
 	                    getTemplate().process(context, out);
 	                    out.flush();
 	                }
