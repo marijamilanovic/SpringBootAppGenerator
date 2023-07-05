@@ -23,7 +23,11 @@ ${class.visibility} class ${class.name} {
     @Enumerated
     </#if>
     <#if property.upper == 1>
-    ${property.visibility} ${property.type} ${property.name};
+    <#if property.type == "date">
+	${property.visibility} Date ${property.name};
+	<#else>
+	${property.visibility} ${property.type} ${property.name};
+	</#if>
     <#elseif property.upper == -1>
     ${property.visibility} List<${property.type}> ${property.name};
     <#else>
@@ -46,7 +50,11 @@ ${class.visibility} class ${class.name} {
 
     @Column(name = "${prop.name?lower_case}", <#if (prop.length)??>length = ${prop.length}, </#if><#if (prop.precision)??>precision = ${prop.precision}, </#if>nullable = <#if prop.lower == 1>false<#else>true</#if>, unique = <#if prop.isUnique>true<#else>false</#if>)
     </#if>
-    ${prop.visibility} ${prop.type} ${prop.name};
+    <#if prop.type == "date">
+	${prop.visibility} Date ${prop.name};
+	<#else>
+	${prop.visibility} ${prop.type} ${prop.name};
+	</#if>
     </#list>
 
     <#list referencedProperties as property>
