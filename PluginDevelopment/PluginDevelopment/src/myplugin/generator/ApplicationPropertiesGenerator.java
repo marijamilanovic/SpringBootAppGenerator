@@ -23,7 +23,7 @@ public class ApplicationPropertiesGenerator extends BasicGenerator{
 	
 	public void generate() {
 
-		String applicationproperties = "application.properties";
+		String applicationproperties = "applicationproperties";
 		String packageName = "";
 
 		try {

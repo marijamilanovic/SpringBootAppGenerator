@@ -19,6 +19,7 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
 
 import myplugin.analyzer.AnalyzeException;
 import myplugin.analyzer.ModelAnalyzer;
+import myplugin.generator.ApplicationPropertiesGenerator;
 import myplugin.generator.ControllerGenerator;
 import myplugin.generator.DtoGenerator;
 import myplugin.generator.EJBGenerator;
@@ -62,6 +63,7 @@ class GenerateAction extends MDAction{
 			generateServiceImpl(root);
 			generateRepository(root);
 			generatePom(root);
+			generateApplicationProperties(root);
 			
 			/**  @ToDo: Also call other generators */ 
 			JOptionPane.showMessageDialog(null, "Code is successfully generated! Generated code is in folder: C:/temp ");
@@ -152,7 +154,15 @@ class GenerateAction extends MDAction{
 		PomGenerator pomGenerator = new PomGenerator(generatorOptions);
 		pomGenerator.generate();
 	}
-
+	
+	private void generateApplicationProperties(Package root) throws AnalyzeException {
+		ModelAnalyzer analyzer = new ModelAnalyzer(root,"uns.ftn.mbrs.resources");
+		analyzer.prepareModel();
+		GeneratorOptions generatorOptions = ProjectOptions.getProjectOptions().getGeneratorOptions().get("ApplicationPropertiesGenerator");
+		ApplicationPropertiesGenerator appPropertiesGenerator = new ApplicationPropertiesGenerator(generatorOptions);
+		appPropertiesGenerator.generate();
+	}
+	
 
 	private void exportToXml() {
 		if (JOptionPane.showConfirmDialog(null, "Do you want to save FM Model?") == 
