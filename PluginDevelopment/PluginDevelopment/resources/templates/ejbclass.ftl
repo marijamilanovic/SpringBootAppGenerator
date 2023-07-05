@@ -25,7 +25,7 @@ ${class.visibility} class ${class.name} {
     <#if property.upper == 1>
     ${property.visibility} ${property.type} ${property.name};
     <#elseif property.upper == -1>
-    ${property.visibility} Set<${property.type}> ${property.name} = new HashSet<>();
+    ${property.visibility} List<${property.type}> ${property.name};
     <#else>
         <#list 1..property.upper as i>
     ${property.visibility} ${property.type} ${property.name}${i};
@@ -70,6 +70,6 @@ ${class.visibility} class ${class.name} {
     <#if (property.joinColumn)??>
     @JoinColumn(name = "${property.joinColumn}")
     </#if>
-    ${property.visibility} <#if property.upper == -1>Set<</#if>${property.type?cap_first}<#if property.upper == -1>></#if> ${property.name?uncap_first};
+    ${property.visibility} <#if property.upper == -1>List<</#if>${property.type?cap_first}<#if property.upper == -1>></#if> ${property.name?uncap_first};
     </#list>
 }
