@@ -80,7 +80,7 @@ public class MyPlugin extends com.nomagic.magicdraw.plugins.Plugin {
 		pomOptions.setTemplateDir(pluginDir + File.separator + pomOptions.getTemplateDir());
 		
 		//Application Properties Generator
-		GeneratorOptions applicationPropertiesGenerator = new GeneratorOptions("C:/temp/mbrs/src/main/java", "applicationproperties", "templates", "application.properties.xml", true, "uns.ftn.mbrs.resources");
+		GeneratorOptions applicationPropertiesGenerator = new GeneratorOptions("C:/temp/mbrs/src/main/resources", "applicationproperties", "templates", "application.properties.xml", true, "");
 		ProjectOptions.getProjectOptions().getGeneratorOptions().put("ApplicationPropertiesGenerator", applicationPropertiesGenerator);
 		applicationPropertiesGenerator.setTemplateDir(pluginDir + File.separator + applicationPropertiesGenerator.getTemplateDir());
 

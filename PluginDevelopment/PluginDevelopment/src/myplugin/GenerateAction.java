@@ -156,7 +156,7 @@ class GenerateAction extends MDAction{
 	}
 	
 	private void generateApplicationProperties(Package root) throws AnalyzeException {
-		ModelAnalyzer analyzer = new ModelAnalyzer(root,"uns.ftn.mbrs.resources");
+		ModelAnalyzer analyzer = new ModelAnalyzer(root,"");
 		analyzer.prepareModel();
 		GeneratorOptions generatorOptions = ProjectOptions.getProjectOptions().getGeneratorOptions().get("ApplicationPropertiesGenerator");
 		ApplicationPropertiesGenerator appPropertiesGenerator = new ApplicationPropertiesGenerator(generatorOptions);

@@ -1,9 +1,15 @@
-server.port = 8082
+server.port = <#if port??>{$port}<#else>8085</#if>
 
-# H2 Database
-spring.h2.console.enabled=true
-spring.datasource.url=jdbc:h2:mem:dcbapp
-spring.datasource.driverClassName=org.h2.Driver
-spring.datasource.username=admin
-spring.datasource.password=admin
-spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+# Database
+spring.datasource.driverClassName=com.mysql.cj.jdbc.Driver
+spring.datasource.initialization-mode=always
+spring.datasource.platform=mysql
+spring.datasource.url=jdbc:mysql://localhost:3306/<#if databaseName??>${databaseName}<#else>mbrs</#if>
+
+spring.datasource.username=<#if databaseUsername??>${databaseUsername}<#else>admin</#if>
+spring.datasource.password=<#if databasePassword??>${databasePassword}<#else>root</#if>
+
+spring.jpa.show-sql = true
+spring.jpa.generate-ddl=true
+
+spring.jpa.hibernate.ddl-auto=create-drop

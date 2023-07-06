@@ -20,6 +20,10 @@ public class FMModel {
 	}
 	
 	private static FMModel model;
+	private String port;
+	private String databaseName;
+	private String databaseUsername;
+	private String databasePassword;
 	
 	public static FMModel getInstance() {
 		if (model == null) {
@@ -41,6 +45,36 @@ public class FMModel {
 		this.enumerations = enumerations;
 	}
 
+	public String getPort() {
+		return port;
+	}
 
+	public void setPort(String port) {
+		this.port = port;
+	}
+
+	public String getDatabaseName() {
+		return databaseName;
+	}
+
+	public void setDatabaseName(String databaseName) {
+		this.databaseName = databaseName;
+	}
+
+	public String getDatabaseUsername() {
+		return databaseUsername;
+	}
+
+	public void setDatabaseUsername(String databaseUsername) {
+		this.databaseUsername = databaseUsername;
+	}
+
+	public String getDatabasePassword() {
+		return databasePassword;
+	}
+
+	public void setDatabasePassword(String databasePassword) {
+		this.databasePassword = databasePassword;
+	}
 
 }
