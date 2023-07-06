@@ -23,27 +23,26 @@ public class ${class.name}ServiceImpl implements ${class.name}Service {
 	@Autowired
 	private ${class.name}Mapper ${class.name?uncap_first}Mapper;
 	
-	
 	@Override
-	public ${class.name}Dto save(${class.name} ${class.name?uncap_first}) {
-		${class.name} saved${class.name} = ${class.name?uncap_first}Repository.save(${class.name?uncap_first});
+	public ${class.name}Dto save(${class.name}Dto new${class.name}Dto) {
+		${class.name} saved${class.name} = ${class.name?uncap_first}Repository.save(new${class.name}Dto);
 		return ${class.name?uncap_first}To${class.name}Dto(saved${class.name});
 	}
 
 	@Override
-	public ${class.name}Dto update(${class.name} ${class.name?uncap_first}) {
-		${class.name} saved${class.name} = ${class.name?uncap_first}Repository.save(${class.name?uncap_first});
+	public ${class.name}Dto update(${class.name}Dto new${class.name}Dto) {
+		${class.name} saved${class.name} = ${class.name?uncap_first}Repository.save(new${class.name}Dto);
 		return ${class.name?uncap_first}To${class.name}Dto(saved${class.name});
 	}
 	
 	@Override
-	public List<${class.name}Dto> getAll() {
+	public List<${class.name}Dto> findAll() {
 		List<${class.name}> ${class.name?uncap_first}s = ${class.name?uncap_first}Repository.findAll();
 		return ${class.name?uncap_first}sTo${class.name}Dtos(${class.name?uncap_first}s);
 	}
 	
 	@Override
-	public Optional<${class.name}Dto> getById(Long id) {
+	public Optional<${class.name}Dto> findById(Long id) {
 		${class.name} ${class.name} = ${class.name?uncap_first}Repository.findById(id);
 		return ${class.name?uncap_first}To${class.name}Dto(${class.name});
 	}
@@ -56,5 +55,15 @@ public class ${class.name}ServiceImpl implements ${class.name}Service {
 		}
 		throw new EntityNotFoundException("${class.name} not found with id: " + id);
 	}
+	
+	<#list properties as property>
+		<#if property.name != "id" && property.upper == 1>
+	@Override
+	public List<${class.name}> findBy${property.name?cap_first}(${property.type} ${property.name}){
+		return ${class.name?uncap_first}Repository.findBy${property.name?cap_first}(${property.name});
+	}
+	
+		</#if>
+	</#list>
 	
 }
