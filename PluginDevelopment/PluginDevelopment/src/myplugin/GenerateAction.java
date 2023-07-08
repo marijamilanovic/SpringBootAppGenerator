@@ -57,7 +57,7 @@ class GenerateAction extends MDAction{
 			generateEnum(root);
 			generateMainClass(root);
 			generateMapper(root);
-			//generateController(root);
+			generateController(root);
 			generateService(root);
 			generateServiceImpl(root);
 			generateRepository(root);

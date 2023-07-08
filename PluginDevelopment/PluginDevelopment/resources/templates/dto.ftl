@@ -1,5 +1,8 @@
 package ${class.typePackage};
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import java.util.*;
 
 import lombok.Getter;
