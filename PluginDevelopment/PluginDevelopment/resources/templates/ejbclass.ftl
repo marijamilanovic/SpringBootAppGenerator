@@ -6,9 +6,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.*;
 
-<#list imports as import>
-import ${import};
-</#list>
+import uns.ftn.mbrs.dto.*;
 
 @Entity
 <#if class.tableName??>

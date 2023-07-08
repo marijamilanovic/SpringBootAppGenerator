@@ -11,6 +11,7 @@ import org.mapstruct.Mapper;
 	injectionStrategy = InjectionStrategy.FIELD
 )
 public interface ${class.name}Mapper {
+
 	${class.name}Dto ${class.name?substring(0,1)?lower_case}${class.name?substring(1)}To${class.name}Dto(${class.name} ${class.name?substring(0,1)?lower_case}${class.name?substring(1)});
 	
 	${class.name} ${class.name?substring(0,1)?lower_case}${class.name?substring(1)}DtoTo${class.name}(${class.name}Dto ${class.name?substring(0,1)?lower_case}${class.name?substring(1)}Dto);

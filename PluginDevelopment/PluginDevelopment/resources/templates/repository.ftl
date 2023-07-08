@@ -2,13 +2,20 @@ package ${class.typePackage};
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import uns.ftn.mbrs.model.${class.name};
+import java.util.*;
+
+import uns.ftn.mbrs.model.*;
 
 @Repository
 public interface ${class.name}Repository extends JpaRepository<${class.name}, Long> {
+
 <#list properties as property>
 	<#if property.upper == 1 && property.name != "id">
-	List<${class.name}> findBy<#if property.name != "">${property.name?cap_first}<#else>${property.type}</#if>(${property.type} ${property.name});
+		<#if property.type == "date" || property.type == "double">
+    	List<${class.name}> findBy<#if property.name != "">${property.name?cap_first}<#else>${property.type}</#if>(${property.type?cap_first} ${property.name});
+			<#else>
+    	List<${class.name}> findBy<#if property.name != "">${property.name?cap_first}<#else>${property.type}</#if>(${property.type} ${property.name});
+	    </#if>
 	
 	</#if>
 </#list>

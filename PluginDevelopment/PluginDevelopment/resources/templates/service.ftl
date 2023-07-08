@@ -1,7 +1,7 @@
 package ${class.typePackage};
 
 import java.util.*;
-import java.util.List;
+
 import uns.ftn.mbrs.model.*;
 import uns.ftn.mbrs.dto.*;
 
@@ -19,8 +19,13 @@ public interface ${class.name}Service {
 	
 	<#list properties as property>
 	        <#if property.name != "id" && property.upper == 1>
-	List<${class.name}> findBy${property.name?cap_first}(${property.type} ${property.name});
+		        <#if property.type == "date" || property.type == "double">
+    	List<${class.name}> findBy${property.name?cap_first}(${property.type?cap_first} ${property.name});
+			        <#else>
+    	List<${class.name}> findBy${property.name?cap_first}(${property.type} ${property.name});
+			    </#if>
 	    
 	        </#if>
 	</#list>
+	
 }

@@ -2,14 +2,18 @@ package ${class.typePackage};
 
 import java.util.*;
 
-<#list imports as import>
-import ${import}Dto;
-</#list>
+import lombok.Getter;
+import lombok.Setter;
+import lombok.RequiredArgsConstructor;
+
+import uns.ftn.mbrs.model.*;
+import uns.ftn.mbrs.dto.*;
 
 @Getter
 @Setter
 @RequiredArgsConstructor
 public class ${class.name}Dto {
+
     <#list properties as property>
     <#if property.type == "date">
 	private Date ${property.name};
