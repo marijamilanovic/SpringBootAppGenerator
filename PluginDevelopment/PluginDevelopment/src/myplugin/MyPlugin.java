@@ -86,12 +86,12 @@ public class MyPlugin extends com.nomagic.magicdraw.plugins.Plugin {
 		homeControllerOptions.setTemplateDir(pluginDir + File.separator + homeControllerOptions.getTemplateDir());
 		
 		//Homepage
-		GeneratorOptions homepageOptions = new GeneratorOptions("c:/temp/mbrs/src/main/webapp/WEB-INF/views", "homepage", "templates", "homepage.jsp", true, "");
+		GeneratorOptions homepageOptions = new GeneratorOptions("c:/temp/mbrs/src/main/webapp/WEB-INF/jsp", "homepage", "templates", "homepage.jsp", true, "");
 		ProjectOptions.getProjectOptions().getGeneratorOptions().put("HomepageGenerator", homepageOptions);
 		homepageOptions.setTemplateDir(pluginDir + File.separator + homepageOptions.getTemplateDir());
 		
 		//Navigation bar
-		GeneratorOptions navBarOptions = new GeneratorOptions("c:/temp/mbrs/src/main/webapp/WEB-INF/views", "navbar", "templates", "navbar.jsp", true, "");
+		GeneratorOptions navBarOptions = new GeneratorOptions("c:/temp/mbrs/src/main/webapp/WEB-INF/jsp", "navbar", "templates", "navbar.jsp", true, "");
 		ProjectOptions.getProjectOptions().getGeneratorOptions().put("NavBarGenerator", navBarOptions);
 		navBarOptions.setTemplateDir(pluginDir + File.separator + navBarOptions.getTemplateDir());
 		
@@ -101,7 +101,7 @@ public class MyPlugin extends com.nomagic.magicdraw.plugins.Plugin {
 		configClassOptions.setTemplateDir(pluginDir + File.separator + configClassOptions.getTemplateDir());
 		
 		//Application properties class
-		GeneratorOptions appPropertiesOptions = new GeneratorOptions("c:/temp/mbrs/src/main/resources", "appProperties", "templates", "application.properties.yaml", true, "uns.ftn.mbrs");
+		GeneratorOptions appPropertiesOptions = new GeneratorOptions("c:/temp/mbrs/src/main/resources", "appProperties", "templates", "application.properties", true, "");
 		ProjectOptions.getProjectOptions().getGeneratorOptions().put("ApplicationPropertiesGenerator", appPropertiesOptions);
 		appPropertiesOptions.setTemplateDir(pluginDir + File.separator + appPropertiesOptions.getTemplateDir());
 

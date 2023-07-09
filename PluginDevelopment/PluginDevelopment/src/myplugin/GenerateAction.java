@@ -70,6 +70,7 @@ class GenerateAction extends MDAction{
 			generateHomepage(root);
 			generateNavBar(root);
 			generateConfigClass(root);
+			generateApplicationProperties(root);
 			
 			/**  @ToDo: Also call other generators */ 
 			JOptionPane.showMessageDialog(null, "Code is successfully generated! Generated code is in folder: C:/temp ");
@@ -194,7 +195,7 @@ class GenerateAction extends MDAction{
 	}
 	
 	private void generateApplicationProperties(Package root) throws AnalyzeException {
-		ModelAnalyzer analyzer = new ModelAnalyzer(root, "uns.ftn.mbrs");
+		ModelAnalyzer analyzer = new ModelAnalyzer(root, "");
 		analyzer.prepareModel();
 		GeneratorOptions generatorOptions = ProjectOptions.getProjectOptions().getGeneratorOptions().get("ApplicationPropertiesGenerator");
 		ConfigClassGenerator configClassGenerator = new ConfigClassGenerator(generatorOptions);
