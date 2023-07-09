@@ -46,7 +46,7 @@ public class MyPlugin extends com.nomagic.magicdraw.plugins.Plugin {
 		enumOptions.setTemplateDir(pluginDir + File.separator + enumOptions.getTemplateDir());
 		
 		//Main class
-		GeneratorOptions mainClassOptions = new GeneratorOptions("c:/temp/mbrs/src/main/java", "main", "templates", "{0}.java", true, "uns.ftn.mbrs");
+		GeneratorOptions mainClassOptions = new GeneratorOptions("c:/temp/mbrs/src/main/java", "main", "templates", "{0}Application.java", true, "uns.ftn.mbrs");
 		ProjectOptions.getProjectOptions().getGeneratorOptions().put("MainClassGenerator", mainClassOptions);
 		mainClassOptions.setTemplateDir(pluginDir + File.separator + mainClassOptions.getTemplateDir());
 
@@ -58,6 +58,7 @@ public class MyPlugin extends com.nomagic.magicdraw.plugins.Plugin {
 		//Controller
 		GeneratorOptions controllerOptions = new GeneratorOptions("c:/temp/mbrs/src/main/java", "controller", "templates", "{0}Controller.java", true, "uns.ftn.mbrs.controller");
 		ProjectOptions.getProjectOptions().getGeneratorOptions().put("ControllerGenerator", controllerOptions);
+		System.out.println("CONTROLLER DIR " + controllerOptions.getTemplateDir());
 		controllerOptions.setTemplateDir(pluginDir + File.separator + controllerOptions.getTemplateDir());
 		
 		//Service
