@@ -104,6 +104,11 @@ public class MyPlugin extends com.nomagic.magicdraw.plugins.Plugin {
 		GeneratorOptions appPropertiesOptions = new GeneratorOptions("c:/temp/mbrs/src/main/resources", "appProperties", "templates", "application.properties", true, "");
 		ProjectOptions.getProjectOptions().getGeneratorOptions().put("ApplicationPropertiesGenerator", appPropertiesOptions);
 		appPropertiesOptions.setTemplateDir(pluginDir + File.separator + appPropertiesOptions.getTemplateDir());
+		
+		//List overview
+		GeneratorOptions listOverviewOptions = new GeneratorOptions("c:/temp/mbrs/src/main/webapp/WEB-INF/jsp", "listOverview", "templates", "listOverview.jsp", true, "");
+		ProjectOptions.getProjectOptions().getGeneratorOptions().put("ListOverviewGenerator", listOverviewOptions);
+		listOverviewOptions.setTemplateDir(pluginDir + File.separator + listOverviewOptions.getTemplateDir());
 
 	}
 
