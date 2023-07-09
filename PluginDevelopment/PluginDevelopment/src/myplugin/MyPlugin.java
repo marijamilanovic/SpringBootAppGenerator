@@ -99,6 +99,11 @@ public class MyPlugin extends com.nomagic.magicdraw.plugins.Plugin {
 		GeneratorOptions configClassOptions = new GeneratorOptions("c:/temp/mbrs/src/main/java", "configClass", "templates", "WebConfig.java", true, "uns.ftn.mbrs");
 		ProjectOptions.getProjectOptions().getGeneratorOptions().put("ConfigClassGenerator", configClassOptions);
 		configClassOptions.setTemplateDir(pluginDir + File.separator + configClassOptions.getTemplateDir());
+		
+		//Application properties class
+		GeneratorOptions appPropertiesOptions = new GeneratorOptions("c:/temp/mbrs/src/main/resources", "appProperties", "templates", "application.properties.yaml", true, "uns.ftn.mbrs");
+		ProjectOptions.getProjectOptions().getGeneratorOptions().put("ApplicationPropertiesGenerator", appPropertiesOptions);
+		appPropertiesOptions.setTemplateDir(pluginDir + File.separator + appPropertiesOptions.getTemplateDir());
 
 	}
 

@@ -192,6 +192,14 @@ class GenerateAction extends MDAction{
 		ConfigClassGenerator configClassGenerator = new ConfigClassGenerator(generatorOptions);
 		configClassGenerator.generate();
 	}
+	
+	private void generateApplicationProperties(Package root) throws AnalyzeException {
+		ModelAnalyzer analyzer = new ModelAnalyzer(root, "uns.ftn.mbrs");
+		analyzer.prepareModel();
+		GeneratorOptions generatorOptions = ProjectOptions.getProjectOptions().getGeneratorOptions().get("ApplicationPropertiesGenerator");
+		ConfigClassGenerator configClassGenerator = new ConfigClassGenerator(generatorOptions);
+		configClassGenerator.generate();
+	}
 
 
 	private void exportToXml() {
