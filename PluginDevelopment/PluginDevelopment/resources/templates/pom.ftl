@@ -84,6 +84,13 @@
 		    <artifactId>bootstrap</artifactId>
 		    <version>5.0.0</version> <!-- Replace with the desired version -->
 		</dependency>
+		
+		<dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        
     </dependencies>
 
     <build>
@@ -102,7 +109,7 @@
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
-                            <version>${lombok.version}</version>
+                            <version>1.18.20</version>
                         </path>
                         <path>
                             <groupId>org.projectlombok</groupId>
