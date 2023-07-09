@@ -79,6 +79,26 @@ public class MyPlugin extends com.nomagic.magicdraw.plugins.Plugin {
 		GeneratorOptions pomOptions = new GeneratorOptions("c:/temp/mbrs", "pom", "templates", "pom.xml", true, "");
 		ProjectOptions.getProjectOptions().getGeneratorOptions().put("PomGenerator", pomOptions);
 		pomOptions.setTemplateDir(pluginDir + File.separator + pomOptions.getTemplateDir());
+		
+		//Home controller
+		GeneratorOptions homeControllerOptions = new GeneratorOptions("c:/temp/mbrs/src/main/java", "homeController", "templates", "HomeController.java", true, "uns.ftn.mbrs.controller");
+		ProjectOptions.getProjectOptions().getGeneratorOptions().put("HomeControllerGenerator", homeControllerOptions);
+		homeControllerOptions.setTemplateDir(pluginDir + File.separator + homeControllerOptions.getTemplateDir());
+		
+		//Homepage
+		GeneratorOptions homepageOptions = new GeneratorOptions("c:/temp/mbrs/src/main/webapp/WEB-INF/views", "homepage", "templates", "homepage.jsp", true, "");
+		ProjectOptions.getProjectOptions().getGeneratorOptions().put("HomepageGenerator", homepageOptions);
+		homepageOptions.setTemplateDir(pluginDir + File.separator + homepageOptions.getTemplateDir());
+		
+		//Navigation bar
+		GeneratorOptions navBarOptions = new GeneratorOptions("c:/temp/mbrs/src/main/webapp/WEB-INF/views", "navbar", "templates", "navbar.jsp", true, "");
+		ProjectOptions.getProjectOptions().getGeneratorOptions().put("NavBarGenerator", navBarOptions);
+		navBarOptions.setTemplateDir(pluginDir + File.separator + navBarOptions.getTemplateDir());
+		
+		//WebConfig class
+		GeneratorOptions configClassOptions = new GeneratorOptions("c:/temp/mbrs/src/main/java", "configClass", "templates", "WebConfig.java", true, "uns.ftn.mbrs");
+		ProjectOptions.getProjectOptions().getGeneratorOptions().put("ConfigClassGenerator", configClassOptions);
+		configClassOptions.setTemplateDir(pluginDir + File.separator + configClassOptions.getTemplateDir());
 
 	}
 

@@ -19,12 +19,16 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
 
 import myplugin.analyzer.AnalyzeException;
 import myplugin.analyzer.ModelAnalyzer;
+import myplugin.generator.ConfigClassGenerator;
 import myplugin.generator.ControllerGenerator;
 import myplugin.generator.DtoGenerator;
 import myplugin.generator.EJBGenerator;
 import myplugin.generator.EnumGenerator;
+import myplugin.generator.HomeControllerGenerator;
+import myplugin.generator.HomepageGenerator;
 import myplugin.generator.MainClassGenerator;
 import myplugin.generator.MapperGenerator;
+import myplugin.generator.NavBarGenerator;
 import myplugin.generator.PomGenerator;
 import myplugin.generator.RepositoryGenerator;
 import myplugin.generator.ServiceGenerator;
@@ -62,6 +66,10 @@ class GenerateAction extends MDAction{
 			generateServiceImpl(root);
 			generateRepository(root);
 			generatePom(root);
+			generateHomeController(root);
+			generateHomepage(root);
+			generateNavBar(root);
+			generateConfigClass(root);
 			
 			/**  @ToDo: Also call other generators */ 
 			JOptionPane.showMessageDialog(null, "Code is successfully generated! Generated code is in folder: C:/temp ");
@@ -151,6 +159,38 @@ class GenerateAction extends MDAction{
 		GeneratorOptions generatorOptions = ProjectOptions.getProjectOptions().getGeneratorOptions().get("PomGenerator");
 		PomGenerator pomGenerator = new PomGenerator(generatorOptions);
 		pomGenerator.generate();
+	}
+	
+	private void generateHomeController(Package root) throws AnalyzeException {
+		ModelAnalyzer analyzer = new ModelAnalyzer(root,"uns.ftn.mbrs.controller");
+		analyzer.prepareModel();
+		GeneratorOptions generatorOptions = ProjectOptions.getProjectOptions().getGeneratorOptions().get("HomeControllerGenerator");
+		HomeControllerGenerator homeControllerGenerator = new HomeControllerGenerator(generatorOptions);
+		homeControllerGenerator.generate();
+	}
+	
+	private void generateHomepage(Package root) throws AnalyzeException {
+		ModelAnalyzer analyzer = new ModelAnalyzer(root,"");
+		analyzer.prepareModel();
+		GeneratorOptions generatorOptions = ProjectOptions.getProjectOptions().getGeneratorOptions().get("HomepageGenerator");
+		HomepageGenerator homepageGenerator = new HomepageGenerator(generatorOptions);
+		homepageGenerator.generate();
+	}
+	
+	private void generateNavBar(Package root) throws AnalyzeException {
+		ModelAnalyzer analyzer = new ModelAnalyzer(root,"");
+		analyzer.prepareModel();
+		GeneratorOptions generatorOptions = ProjectOptions.getProjectOptions().getGeneratorOptions().get("NavBarGenerator");
+		NavBarGenerator navBarGenerator = new NavBarGenerator(generatorOptions);
+		navBarGenerator.generate();
+	}
+	
+	private void generateConfigClass(Package root) throws AnalyzeException {
+		ModelAnalyzer analyzer = new ModelAnalyzer(root, "uns.ftn.mbrs");
+		analyzer.prepareModel();
+		GeneratorOptions generatorOptions = ProjectOptions.getProjectOptions().getGeneratorOptions().get("ConfigClassGenerator");
+		ConfigClassGenerator configClassGenerator = new ConfigClassGenerator(generatorOptions);
+		configClassGenerator.generate();
 	}
 
 
