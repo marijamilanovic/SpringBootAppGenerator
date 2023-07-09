@@ -13,7 +13,7 @@ import org.springframework.web.servlet.view.JstlView;
 @EnableAutoConfiguration
 public class WebConfig implements WebMvcConfigurer {
 
-    private static final String VIEW_RESOLVER_PREFIX = "/WEB-INF/views/";
+    private static final String VIEW_RESOLVER_PREFIX = "/WEB-INF/jsp/";
     private static final String VIEW_RESOLVER_SUFIX = ".jsp";
 
     @Bean
