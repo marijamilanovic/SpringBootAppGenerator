@@ -48,7 +48,7 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <version>1.4.200</version>
+            <scope>runtime</scope>
         </dependency>
         
         <dependency>
@@ -91,12 +91,6 @@
 		    <version>5.0.0</version> <!-- Replace with the desired version -->
 		</dependency>
 		
-		<dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-        
     </dependencies>
 
     <build>
