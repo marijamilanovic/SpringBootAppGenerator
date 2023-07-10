@@ -14,7 +14,4 @@ spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
 spring.jpa.hibernate.ddl-auto = create-drop
 spring.main.allow-circular-references=true
 spring.jpa.show-sql=true
-
-spring.mvc.view.prefix=/WEB-INF/views/
-spring.mvc.view.suffix=.jsp
 spring.jpa.defer-datasource-initialization=true
