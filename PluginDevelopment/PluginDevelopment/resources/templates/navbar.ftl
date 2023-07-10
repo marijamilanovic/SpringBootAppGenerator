@@ -29,7 +29,7 @@
 			Company
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="/companyInfo">Company Info</a>
+          <a class="dropdown-item" href="/companyInfo">Show all</a>
           <a class="dropdown-item" href="/bussinesYears/new">Bussines years</a>
           <a class="dropdown-item" href="/bankAccounts">Bank Accounts</a>
         </div>

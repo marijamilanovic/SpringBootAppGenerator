@@ -44,6 +44,12 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
         
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -85,12 +91,6 @@
 		    <version>5.0.0</version> <!-- Replace with the desired version -->
 		</dependency>
 		
-		<dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-        
     </dependencies>
 
     <build>

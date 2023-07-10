@@ -26,6 +26,7 @@ import myplugin.generator.EJBGenerator;
 import myplugin.generator.EnumGenerator;
 import myplugin.generator.HomeControllerGenerator;
 import myplugin.generator.HomepageGenerator;
+import myplugin.generator.ListOverviewGenerator;
 import myplugin.generator.MainClassGenerator;
 import myplugin.generator.MapperGenerator;
 import myplugin.generator.NavBarGenerator;
@@ -71,6 +72,7 @@ class GenerateAction extends MDAction{
 			generateNavBar(root);
 			generateConfigClass(root);
 			generateApplicationProperties(root);
+			generateListOverview(root);
 			
 			/**  @ToDo: Also call other generators */ 
 			JOptionPane.showMessageDialog(null, "Code is successfully generated! Generated code is in folder: C:/temp ");
@@ -200,6 +202,14 @@ class GenerateAction extends MDAction{
 		GeneratorOptions generatorOptions = ProjectOptions.getProjectOptions().getGeneratorOptions().get("ApplicationPropertiesGenerator");
 		ConfigClassGenerator configClassGenerator = new ConfigClassGenerator(generatorOptions);
 		configClassGenerator.generate();
+	}
+	
+	private void generateListOverview(Package root) throws AnalyzeException {
+		ModelAnalyzer analyzer = new ModelAnalyzer(root,"");
+		analyzer.prepareModel();
+		GeneratorOptions generatorOptions = ProjectOptions.getProjectOptions().getGeneratorOptions().get("ListOverviewGenerator");
+		ListOverviewGenerator listOverviewGenerator = new ListOverviewGenerator(generatorOptions);
+		listOverviewGenerator.generate();
 	}
 
 
