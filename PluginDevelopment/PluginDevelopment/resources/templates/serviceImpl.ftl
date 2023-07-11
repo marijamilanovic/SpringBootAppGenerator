@@ -45,13 +45,13 @@ public class ${class.name}ServiceImpl implements ${class.name}Service {
 	}
 	
 	@Override
-	public Optional<${class.name}Dto> findById(Long id) {
+	public Optional<${class.name}Dto> findById(Integer id) {
 		Optional<${class.name}> ${class.name?uncap_first} = ${class.name?uncap_first}Repository.findById(id);
 		return ${class.name?uncap_first}.map(${class.name?uncap_first}Mapper::${class.name?uncap_first}To${class.name}Dto);
 	}
 	
 	@Override
-	public void delete(Long id) {
+	public void delete(Integer id) {
 		Optional<${class.name}> ${class.name?uncap_first} = ${class.name?uncap_first}Repository.findById(id);
 		if(${class.name?uncap_first}.isPresent()){
 			${class.name?uncap_first}Repository.delete(${class.name?uncap_first}.get());

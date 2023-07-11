@@ -85,12 +85,12 @@ public class MyPlugin extends com.nomagic.magicdraw.plugins.Plugin {
 		ProjectOptions.getProjectOptions().getGeneratorOptions().put("HomeControllerGenerator", homeControllerOptions);
 		homeControllerOptions.setTemplateDir(pluginDir + File.separator + homeControllerOptions.getTemplateDir());
 		
-		//Homepage
+		//Homepage jsp
 		GeneratorOptions homepageOptions = new GeneratorOptions("c:/temp/mbrs/src/main/webapp/WEB-INF/jsp", "homepage", "templates", "homepage.jsp", true, "");
 		ProjectOptions.getProjectOptions().getGeneratorOptions().put("HomepageGenerator", homepageOptions);
 		homepageOptions.setTemplateDir(pluginDir + File.separator + homepageOptions.getTemplateDir());
 		
-		//Navigation bar
+		//Navigation bar jsp
 		GeneratorOptions navBarOptions = new GeneratorOptions("c:/temp/mbrs/src/main/webapp/WEB-INF/jsp", "navbar", "templates", "navbar.jsp", true, "");
 		ProjectOptions.getProjectOptions().getGeneratorOptions().put("NavBarGenerator", navBarOptions);
 		navBarOptions.setTemplateDir(pluginDir + File.separator + navBarOptions.getTemplateDir());
@@ -109,6 +109,11 @@ public class MyPlugin extends com.nomagic.magicdraw.plugins.Plugin {
 		GeneratorOptions listOverviewOptions = new GeneratorOptions("c:/temp/mbrs/src/main/webapp/WEB-INF/jsp", "listOverview", "templates", "{0}ListOverview.jsp", true, "");
 		ProjectOptions.getProjectOptions().getGeneratorOptions().put("ListOverviewGenerator", listOverviewOptions);
 		listOverviewOptions.setTemplateDir(pluginDir + File.separator + listOverviewOptions.getTemplateDir());
+		
+		//Form jsp
+		GeneratorOptions formOptions = new GeneratorOptions("c:/temp/mbrs/src/main/webapp/WEB-INF/jsp", "form", "templates", "{0}Form.jsp", true, "");
+		ProjectOptions.getProjectOptions().getGeneratorOptions().put("FormGenerator", formOptions);
+		formOptions.setTemplateDir(pluginDir + File.separator + formOptions.getTemplateDir());
 
 	}
 

@@ -13,9 +13,9 @@ public interface ${class.name}Service {
 	
 	List<${class.name}Dto> findAll();
 	
-	Optional<${class.name}Dto> findById(Long id);
+	Optional<${class.name}Dto> findById(Integer id);
 	
-	void delete(Long id);
+	void delete(Integer id);
 	
 	<#list properties as property>
 	        <#if property.name != "id" && property.upper == 1>

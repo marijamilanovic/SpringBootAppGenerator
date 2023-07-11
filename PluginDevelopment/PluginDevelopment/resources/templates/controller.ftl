@@ -18,13 +18,14 @@ import org.springframework.stereotype.Controller;
 public class ${class.name?cap_first}Controller {
 
 	private final ${class.name?cap_first}ServiceImpl ${class.name?uncap_first}ServiceImpl;
-	
+    
     @GetMapping("/{id}")
-    public String findById (@PathVariable Long id, Model model) throws Exception {
+    public String findById(@PathVariable Integer id, Model model) throws Exception {
         Optional<${class.name}Dto> ${class.name?uncap_first}Dto = ${class.name?uncap_first}ServiceImpl.findById(id);
-        model.addAttribute("${class.name?uncap_first}", ${class.name?uncap_first}Dto);
-        
-		return "${class.name}";
+        if (${class.name?uncap_first}Dto.isPresent()) {
+            model.addAttribute("${class.name?lower_case}", ${class.name?uncap_first}Dto.get());
+        }
+        return "${class.name?cap_first}Form";
     }
 
     @GetMapping("/all")
@@ -48,7 +49,7 @@ public class ${class.name?cap_first}Controller {
     }
 
     @DeleteMapping("/delete/{id}")
-    public void delete(@PathVariable Long id){
+    public void delete(@PathVariable Integer id){
         ${class.name?uncap_first}ServiceImpl.delete(id);
     }
 

@@ -7,7 +7,7 @@ import java.util.*;
 import uns.ftn.mbrs.model.*;
 
 @Repository
-public interface ${class.name}Repository extends JpaRepository<${class.name}, Long> {
+public interface ${class.name}Repository extends JpaRepository<${class.name}, Integer> {
 
 <#list properties as property>
 	<#if property.upper == 1 && property.name != "id">
