@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import javax.persistence.*;
 import java.util.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import uns.ftn.mbrs.dto.*;
 
@@ -63,6 +64,7 @@ ${class.visibility} class ${class.name} {
     @OneToMany
     <#elseif property.upper == 1 && property.oppositeEnd == -1>
     
+   	@JsonBackReference
     @ManyToOne
     <#else>
     
