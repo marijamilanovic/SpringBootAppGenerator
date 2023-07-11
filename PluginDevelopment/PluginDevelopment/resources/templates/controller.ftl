@@ -10,9 +10,9 @@ import org.springframework.ui.Model;
 import uns.ftn.mbrs.service.impl.*;
 import uns.ftn.mbrs.dto.*;
 import uns.ftn.mbrs.model.*;
+import org.springframework.stereotype.Controller;
 
-
-@RestController
+@Controller
 @RequestMapping("/${class.name?lower_case}")
 @RequiredArgsConstructor
 public class ${class.name?cap_first}Controller {
@@ -20,28 +20,31 @@ public class ${class.name?cap_first}Controller {
 	private final ${class.name?cap_first}ServiceImpl ${class.name?uncap_first}ServiceImpl;
 	
     @GetMapping("/{id}")
-    public ResponseEntity<${class.name}Dto> findById (@PathVariable Long id) throws Exception {
+    public String findById (@PathVariable Long id, Model model) throws Exception {
         Optional<${class.name}Dto> ${class.name?uncap_first}Dto = ${class.name?uncap_first}ServiceImpl.findById(id);
-        return ${class.name?uncap_first}Dto == null ? new ResponseEntity<>(HttpStatus.NOT_FOUND) : ResponseEntity.ok(${class.name?uncap_first}Dto.get());
+        model.addAttribute("${class.name?uncap_first}", ${class.name?uncap_first}Dto);
+        
+		return "${class.name}";
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<${class.name}Dto>> findAll() {
-        List<${class.name}Dto> ${class.name?uncap_first}Dtos = ${class.name?uncap_first}ServiceImpl.findAll();
-        return ${class.name?uncap_first}Dtos == null ? new ResponseEntity<>(HttpStatus.NOT_FOUND) : ResponseEntity.ok(${class.name?uncap_first}Dtos);
-
+    public String findAll(Model model) {
+		model.addAttribute("${class.name?uncap_first}", new ${class.name}());
+    	model.addAttribute("${class.name?uncap_first}List", ${class.name?uncap_first}ServiceImpl.findAll());
+    	
+    	return "${class.name}ListOverview";
     }
     
     @PostMapping("/save")
-    public ResponseEntity<${class.name}Dto> save(@RequestBody ${class.name}Dto ${class.name?uncap_first}Dto) {
+    public String save(@RequestBody ${class.name}Dto ${class.name?uncap_first}Dto) {
         ${class.name}Dto saved${class.name}Dto = ${class.name?uncap_first}ServiceImpl.save(${class.name?uncap_first}Dto);
-        return saved${class.name}Dto == null ? new ResponseEntity<>(HttpStatus.NOT_FOUND) : ResponseEntity.ok(saved${class.name}Dto);
+		return "${class.name}";
     }
     
     @PostMapping("/update")
-    public ResponseEntity<${class.name}Dto> update(@RequestBody ${class.name}Dto ${class.name?uncap_first}Dto) {
+    public String update(@RequestBody ${class.name}Dto ${class.name?uncap_first}Dto) {
         ${class.name}Dto saved${class.name}Dto = ${class.name?uncap_first}ServiceImpl.update(${class.name?uncap_first}Dto);
-        return saved${class.name}Dto == null ? new ResponseEntity<>(HttpStatus.NOT_FOUND) : ResponseEntity.ok(saved${class.name}Dto);
+		return "${class.name}";
     }
 
     @DeleteMapping("/delete/{id}")
@@ -49,8 +52,4 @@ public class ${class.name?cap_first}Controller {
         ${class.name?uncap_first}ServiceImpl.delete(id);
     }
 
-     private void initModel(Model model) {
-    	model.addAttribute("${class.name?uncap_first}", new ${class.name}());
-    	model.addAttribute("${class.name?uncap_first}List", ${class.name?uncap_first}ServiceImpl.findAll());
-    }
 }
