@@ -40,6 +40,7 @@ public class MapperGenerator extends BasicGenerator {
 	                    context.clear();
 	                    context.put("class", cl);
 	                    context.put("importedPackages", cl.getImportedPackages());
+	                    context.put("referencedProperties", cl.getReferencedProperties());
 	                    
 	                    getTemplate().process(context, out);
 	                    out.flush();

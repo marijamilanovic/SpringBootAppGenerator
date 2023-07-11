@@ -5,15 +5,25 @@ import uns.ftn.mbrs.model.*;
 import uns.ftn.mbrs.dto.*;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 @Mapper(
 	componentModel = "spring",
 	injectionStrategy = InjectionStrategy.FIELD
 )
 public interface ${class.name}Mapper {
-
+  	<#list referencedProperties as property>
+		<#if property.upper == 1 && property.oppositeEnd == -1>
+	@Mapping(target = "${property.name?uncap_first}", ignore = true)
+	    </#if>
+    </#list>
 	${class.name}Dto ${class.name?substring(0,1)?lower_case}${class.name?substring(1)}To${class.name}Dto(${class.name} ${class.name?substring(0,1)?lower_case}${class.name?substring(1)});
 	
+	<#list referencedProperties as property>
+		<#if property.upper == 1 && property.oppositeEnd == -1>
+	@Mapping(target = "${property.name?uncap_first}", ignore = true)
+	    </#if>
+    </#list>
 	${class.name} ${class.name?substring(0,1)?lower_case}${class.name?substring(1)}DtoTo${class.name}(${class.name}Dto ${class.name?substring(0,1)?lower_case}${class.name?substring(1)}Dto);
 
 	<#if class.name?ends_with("y")>

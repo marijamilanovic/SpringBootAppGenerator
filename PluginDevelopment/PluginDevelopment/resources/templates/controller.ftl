@@ -10,19 +10,23 @@ import org.springframework.ui.Model;
 import uns.ftn.mbrs.service.impl.*;
 import uns.ftn.mbrs.dto.*;
 import uns.ftn.mbrs.model.*;
+import org.springframework.stereotype.Controller;
 
 
-@RestController
+@Controller
 @RequestMapping("/${class.name?lower_case}")
 @RequiredArgsConstructor
 public class ${class.name?cap_first}Controller {
 
 	private final ${class.name?cap_first}ServiceImpl ${class.name?uncap_first}ServiceImpl;
-	
+    
     @GetMapping("/{id}")
-    public ResponseEntity<${class.name}Dto> findById (@PathVariable Long id) throws Exception {
+    public String findById(@PathVariable Integer id, Model model) throws Exception {
         Optional<${class.name}Dto> ${class.name?uncap_first}Dto = ${class.name?uncap_first}ServiceImpl.findById(id);
-        return ${class.name?uncap_first}Dto == null ? new ResponseEntity<>(HttpStatus.NOT_FOUND) : ResponseEntity.ok(${class.name?uncap_first}Dto.get());
+        if (${class.name?uncap_first}Dto.isPresent()) {
+            model.addAttribute("${class.name?lower_case}", ${class.name?uncap_first}Dto.get());
+        }
+        return "${class.name?cap_first}Form";
     }
 
     @GetMapping("/all")
@@ -45,7 +49,7 @@ public class ${class.name?cap_first}Controller {
     }
 
     @DeleteMapping("/delete/{id}")
-    public void delete(@PathVariable Long id){
+    public void delete(@PathVariable Integer id){
         ${class.name?uncap_first}ServiceImpl.delete(id);
     }
 
