@@ -10,7 +10,7 @@
 </head>
 <body>
 	<%@include file="navbar.jsp"%>
-    <h1>Welcome to the Home Page!</h1>
-    <p>This is a sample JSP home page.</p>
+    <h1>Welcome to generated application!</h1>
+    <p>Team 2, generation 2021</p>
 </body>
 </html>
