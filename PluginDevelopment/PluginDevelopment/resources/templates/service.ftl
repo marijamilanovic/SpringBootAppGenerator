@@ -11,7 +11,7 @@ public interface ${class.name}Service {
 	
 	${class.name}Dto update(${class.name}Dto new${class.name}Dto);
 	
-	List<${class.name}Dto> findAll();
+	List<${class.name}> findAll();
 	
 	${class.name} findById(Integer id);
 	

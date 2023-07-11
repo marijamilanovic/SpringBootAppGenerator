@@ -21,6 +21,9 @@
                         	<#list properties as property>
                         	<th>${property.name?cap_first}</th>
                         	</#list>
+                        	<#list persistentProperties as property>
+                    		<th>${property.name?cap_first}</th>
+                        	</#list>
                         	<#list referencedProperties as property>
                     		<th>${property.name?cap_first}</th>
                         	</#list>
@@ -32,10 +35,15 @@
                 		<#list properties as property>
                     		<td>"${ "${" + class.name?uncap_first + "." + property.name?uncap_first + "}" }"</td>
                 		</#list>
+                		 <#list persistentProperties as property>
+                		 <td>
+		                 	<label>${"${" + class.name?uncap_first + "." + property.name + "}"} </label>
+		                 </td>
+		                 </#list>
                 		 <#list referencedProperties as property>
                 		 <td>
 		                   <c:forEach items="${ "${" + class.name?uncap_first + "." + property.name?uncap_first + "}" }" var="${property.name?uncap_first}">
-		                 		<label>"${ "${" + property.name?uncap_first + ".name" + "}" }" </label>
+		                 		<label>${ "${" + property.name?uncap_first +".id" +"}" } </label>
 		                   </c:forEach>
 		                 </td>
 		                 </#list>

@@ -48,16 +48,16 @@ public class ${class.name}ServiceImpl implements ${class.name}Service {
 	}
 	
 	@Override
-	public List<${class.name}Dto> findAll() {
+	public List<${class.name}> findAll() {
 	<#if class.name?ends_with("y")>
 		List<${class.name}> ${class.name?substring(0,1)?lower_case}${class.name?substring(1, class.name?length-1)}ies = ${class.name?uncap_first}Repository.findAll();
-		return ${class.name?uncap_first}Mapper.${class.name?substring(0,1)?lower_case}${class.name?substring(1, class.name?length-1)}iesTo${class.name?substring(0, class.name?length-1)}iesDtos(${class.name?substring(0,1)?lower_case}${class.name?substring(1, class.name?length-1)}ies);
+		return ${class.name?substring(0,1)?lower_case}${class.name?substring(1, class.name?length-1)}ies;
 	<#elseif class.name?ends_with("s")>
 		List<${class.name}> ${class.name?uncap_first} = ${class.name?uncap_first}Repository.findAll();
-		return ${class.name?uncap_first}Mapper.${class.name?substring(0,1)?lower_case}${class.name?substring(1)}To${class.name}Dtos(${class.name?substring(0,1)?lower_case}${class.name?substring(1)});
+		return ${class.name?uncap_first};
 	<#else>
 		List<${class.name}> ${class.name?uncap_first}s = ${class.name?uncap_first}Repository.findAll();
-		return ${class.name?uncap_first}Mapper.${class.name?uncap_first}sTo${class.name}Dtos(${class.name?uncap_first}s);
+		return ${class.name?uncap_first}s;
 	</#if>
 	}
 	
