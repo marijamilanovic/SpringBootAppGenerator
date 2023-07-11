@@ -15,7 +15,7 @@ public interface ${class.name}Service {
 	
 	${class.name} findById(Integer id);
 	
-	void delete(Integer id);
+	String delete(Integer id);
 	
 	<#list properties as property>
 	        <#if property.name != "id" && property.upper == 1>

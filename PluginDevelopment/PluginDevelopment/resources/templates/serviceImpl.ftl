@@ -37,7 +37,13 @@ public class ${class.name}ServiceImpl implements ${class.name}Service {
 
 	@Override
 	public ${class.name}Dto update(${class.name}Dto new${class.name}Dto) {
-		${class.name} saved${class.name} = ${class.name?uncap_first}Repository.save(${class.name?uncap_first}Mapper.${class.name?uncap_first}DtoTo${class.name}(new${class.name}Dto));
+		${class.name} toBeSaved = ${class.name?uncap_first}Mapper.${class.name?uncap_first}DtoTo${class.name}(new${class.name}Dto);
+		<#list referencedProperties as property>
+			<#if property.upper == 1 && property.oppositeEnd == -1>
+		toBeSaved.set${property.name?cap_first}(${property.name?uncap_first}ServiceImpl.findById(new${class.name}Dto.get${property.name?cap_first}Id()));
+		    </#if>
+    	</#list>
+		${class.name} saved${class.name} = ${class.name?uncap_first}Repository.save(toBeSaved);
 		return ${class.name?uncap_first}Mapper.${class.name?uncap_first}To${class.name}Dto(saved${class.name});
 	}
 	
@@ -62,12 +68,14 @@ public class ${class.name}ServiceImpl implements ${class.name}Service {
 	}
 	
 	@Override
-	public void delete(Integer id) {
+	public String delete(Integer id) {
 		Optional<${class.name}> ${class.name?uncap_first} = ${class.name?uncap_first}Repository.findById(id);
 		if(${class.name?uncap_first}.isPresent()){
 			${class.name?uncap_first}Repository.delete(${class.name?uncap_first}.get());
+			return "redirect:/";
+		} else {
+			throw new EntityNotFoundException("${class.name} not found with id: " + id);
 		}
-		throw new EntityNotFoundException("${class.name} not found with id: " + id);
 	}
 	
 	<#list properties as property>

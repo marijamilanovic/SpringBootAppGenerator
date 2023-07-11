@@ -12,6 +12,7 @@
         <h3 class="text-center">Edit ${class.name?cap_first}</h3>
         <div>
         	<form action="save" method="post">
+        	 	<input type="hidden" id="id" name="id" value="${'${' + class.name?uncap_first + '.id}'}">
         		<br>
         		<#list persistentProperties as property>
                 	<#if property.name != "id" && (property.type == "String" || property.type == "Integer")>
@@ -28,9 +29,12 @@
                 <br>
                 <input type="submit" value="Save">
     		</form>
-    		<form action="delete/${'${' + class.name?uncap_first + '.id}'}" method="delete">
-        		<input type="submit" value="Delete">
-    		</form>
+    		<br>
+            <br>
+    		<form action="delete/${'${' + class.name?uncap_first + '.id}'}" method="post">
+    			<input type="hidden" name="_method" value="DELETE">
+    			<input type="submit" value="Delete">
+			</form>
         </div>
      </div>
   </body>
