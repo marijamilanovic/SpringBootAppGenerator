@@ -22,9 +22,9 @@ public class ${class.name?cap_first}Controller {
     
     @GetMapping("/{id}")
     public String findById(@PathVariable Integer id, Model model) throws Exception {
-        Optional<${class.name}Dto> ${class.name?uncap_first}Dto = ${class.name?uncap_first}ServiceImpl.findById(id);
-        if (${class.name?uncap_first}Dto.isPresent()) {
-            model.addAttribute("${class.name?lower_case}", ${class.name?uncap_first}Dto.get());
+        ${class.name} ${class.name?uncap_first} = ${class.name?uncap_first}ServiceImpl.findById(id);
+        if (${class.name?uncap_first} != null) {
+            model.addAttribute("${class.name?lower_case}", ${class.name?uncap_first});
         }
         return "${class.name?cap_first}Form";
     }

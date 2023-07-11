@@ -13,7 +13,7 @@ public interface ${class.name}Service {
 	
 	List<${class.name}Dto> findAll();
 	
-	Optional<${class.name}Dto> findById(Integer id);
+	${class.name} findById(Integer id);
 	
 	void delete(Integer id);
 	

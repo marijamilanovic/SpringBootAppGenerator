@@ -34,7 +34,11 @@ public class ${class.name}Dto {
     
     </#list>
     <#list referencedProperties as property>
-    private <#if property.upper == -1>List<</#if>${property.type?cap_first}Dto<#if property.upper == -1>></#if> ${property.name?uncap_first};
+    	<#if property.upper == -1>
+    private List<${property.type?cap_first}Dto> ${property.name?uncap_first};
+    	<#else>
+    private Integer ${property.name?uncap_first}Id;
+    	</#if>
     
     </#list>
 }
