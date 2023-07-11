@@ -43,7 +43,7 @@
                 		 <#list referencedProperties as property>
                 		 <td>
 		                   <c:forEach items="${ "${" + class.name?uncap_first + "." + property.name?uncap_first + "}" }" var="${property.name?uncap_first}">
-		                 		<label>${ "${" + property.name?uncap_first + "}" } </label>
+		                 		<label>${ "${" + property.name?uncap_first +".id" +"}" } </label>
 		                   </c:forEach>
 		                 </td>
 		                 </#list>

@@ -43,7 +43,7 @@ public class ${class.name?cap_first}Controller {
     }
     
     @PostMapping("/update")
-    public ResponseEntity<${class.name}Dto> update(@ModelAttribute ${class.name}Dto ${class.name?uncap_first}Dto) {
+    public String update(@ModelAttribute ${class.name}Dto ${class.name?uncap_first}Dto) {
         ${class.name}Dto saved${class.name}Dto = ${class.name?uncap_first}ServiceImpl.update(${class.name?uncap_first}Dto);
 		return "${class.name}";
     }
