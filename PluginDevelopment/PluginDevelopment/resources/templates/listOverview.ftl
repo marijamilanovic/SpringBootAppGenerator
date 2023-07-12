@@ -45,7 +45,7 @@
          </div>
 	<script>
 	  function redirectToPage(rowId) {
-		window.location.href = '/${class.name?uncap_first}/' + rowId;
+		window.location.href = '/${class.name?uncap_first}/overview/' + rowId;
 	  }
 	</script>
   </body>

@@ -1,7 +1,5 @@
 package ${class.typePackage};
 
-import java.util.*;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +26,17 @@ public class ${class.name?cap_first}Controller {
         }
         return "${class.name?cap_first}Form";
     }
-
+    
+    @GetMapping("/overview/{id}")
+    public String overviewObjectById(@PathVariable Integer id, Model model) throws Exception {
+        ${class.name} ${class.name?uncap_first} = ${class.name?uncap_first}ServiceImpl.findById(id);
+        if (${class.name?uncap_first} != null) {
+            model.addAttribute("${class.name?lower_case}", ${class.name?uncap_first});
+        }
+        return "${class.name?cap_first}Overview";
+    }
+    
+    
     @GetMapping("/all")
     public String findAll(Model model) {
 		model.addAttribute("${class.name?uncap_first}", new ${class.name}());
@@ -51,10 +59,5 @@ public class ${class.name?cap_first}Controller {
     @PostMapping("/delete/{id}")
     public String delete(@PathVariable Integer id){
         return ${class.name?uncap_first}ServiceImpl.delete(id);
-    }
-
-     private void initModel(Model model) {
-    	model.addAttribute("${class.name?uncap_first}", new ${class.name}());
-    	model.addAttribute("${class.name?uncap_first}List", ${class.name?uncap_first}ServiceImpl.findAll());
     }
 }
