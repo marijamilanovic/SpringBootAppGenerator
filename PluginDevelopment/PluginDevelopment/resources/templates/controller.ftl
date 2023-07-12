@@ -12,6 +12,7 @@ import uns.ftn.mbrs.dto.*;
 import uns.ftn.mbrs.model.*;
 import org.springframework.stereotype.Controller;
 
+
 @Controller
 @RequestMapping("/${class.name?lower_case}")
 @RequiredArgsConstructor
@@ -37,15 +38,14 @@ public class ${class.name?cap_first}Controller {
     }
     
     @PostMapping("/save")
-    public String save(@RequestBody ${class.name}Dto ${class.name?uncap_first}Dto) {
+    public ResponseEntity<${class.name}Dto> save(@RequestBody ${class.name}Dto ${class.name?uncap_first}Dto) {
         ${class.name}Dto saved${class.name}Dto = ${class.name?uncap_first}ServiceImpl.save(${class.name?uncap_first}Dto);
-		return "${class.name}";
+        return saved${class.name}Dto == null ? new ResponseEntity<>(HttpStatus.NOT_FOUND) : ResponseEntity.ok(saved${class.name}Dto);
     }
     
     @PostMapping("/update")
-    public String update(@ModelAttribute ${class.name}Dto ${class.name?uncap_first}Dto) {
-        ${class.name}Dto saved${class.name}Dto = ${class.name?uncap_first}ServiceImpl.update(${class.name?uncap_first}Dto);
-		return "${class.name}";
+    public String update(@ModelAttribute ${class.name} ${class.name?uncap_first}) {
+        return ${class.name?uncap_first}ServiceImpl.update(${class.name?uncap_first});
     }
 
     @PostMapping("/delete/{id}")
@@ -53,4 +53,8 @@ public class ${class.name?cap_first}Controller {
         return ${class.name?uncap_first}ServiceImpl.delete(id);
     }
 
+     private void initModel(Model model) {
+    	model.addAttribute("${class.name?uncap_first}", new ${class.name}());
+    	model.addAttribute("${class.name?uncap_first}List", ${class.name?uncap_first}ServiceImpl.findAll());
+    }
 }
