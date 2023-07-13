@@ -11,13 +11,20 @@
     }
 </style>
 
+<script>
+	function redirectToPage(url) {
+		// Redirect to the desired page
+		window.location.href = url;
+	}
+</script>
+
 <!DOCTYPE html>
 <html>
   <body>
     <%@include file="navbar.jsp"%>
 	<div class="container">
 		<br/>
-        <h3 class="text-center">Edit ${class.name?cap_first}</h3>
+        <h3 class="text-center">${class.name?cap_first} details</h3>
         <div>
         	<form action="update" method="post">
         	 	<input type="hidden" id="id" name="id" value="${'${' + class.name?uncap_first + '.id}'}">
@@ -30,7 +37,17 @@
 					</#if>
                	</#list>
                 <br>
-                <br>
+                <#list referencedProperties as property>
+                	<#if property.upper == -1 && property.oppositeEnd == 1>
+            	<label>${property.name?cap_first} [id]:</label>
+				<c:forEach var="item" items="${'${' + class.name?uncap_first + '.' + property.name + '}'}">
+					<li><a href="#" onclick="redirectToPage(${"'/" + property.type?lower_case + "/" + '${' + 'item.id' + '}'+ "'"})">${'${' + 'item.id' + '}'}</a></li>
+					<br>
+				</c:forEach>
+					</#if>
+               	</#list>
+				<br>
+				<br>
                 <div class="button-container">
 					<input type="submit" value="Save">
 					<form action="delete/${'${' + class.name?uncap_first + '.id}'}" method="post">
