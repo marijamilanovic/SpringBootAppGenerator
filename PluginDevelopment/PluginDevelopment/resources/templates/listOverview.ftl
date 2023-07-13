@@ -24,14 +24,11 @@
                         	<#list persistentProperties as property>
                     		<th>${property.name?cap_first}</th>
                         	</#list>
-                        	<#list referencedProperties as property>
-                    		<th>${property.name?cap_first}</th>
-                        	</#list>
                     	</tr>
                     </thead>
                     <tbody>
                     	<c:forEach items="${ "${" + class.name?uncap_first + "List" + "}" }" var="${class.name?uncap_first}">
-                    	<tr>
+                    	<tr onclick="redirectToPage(${ "${" + class.name?uncap_first + ".id" +"}" })">
                 		<#list properties as property>
                     		<td>"${ "${" + class.name?uncap_first + "." + property.name?uncap_first + "}" }"</td>
                 		</#list>
@@ -40,18 +37,16 @@
 		                 	<label>${"${" + class.name?uncap_first + "." + property.name + "}"} </label>
 		                 </td>
 		                 </#list>
-                		 <#list referencedProperties as property>
-                		 <td>
-		                   <c:forEach items="${ "${" + class.name?uncap_first + "." + property.name?uncap_first + "}" }" var="${property.name?uncap_first}">
-		                 		<label>${ "${" + property.name?uncap_first +".id" +"}" } </label>
-		                   </c:forEach>
-		                 </td>
-		                 </#list>
                     	</tr>
                     	</c:forEach>
                     </tbody>
                  </table>
             </div>
          </div>
+	<script>
+	  function redirectToPage(rowId) {
+		window.location.href = '/${class.name?uncap_first}/overview/' + rowId;
+	  }
+	</script>
   </body>
 </html>
