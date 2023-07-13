@@ -36,36 +36,33 @@
        	</#list>
   	</div>
     <div>
-		<table id="table_id" class="table table-sm table-hover table-bordered text-center mt-3">
-        	<thead>
+         <table id="table_id" class="table table-sm table-hover table-bordered text-center mt-3">
+            <thead>
             	<tr>
                 	<#list referencedProperties as property>
-                		<th>${property.name?cap_first}</th>
-                    </#list>
+            		<th>${property.name?cap_first}</th>
+                	</#list>
             	</tr>
             </thead>
             <tbody>
-            	<c:forEach items="${ "${" + class.name?uncap_first + "List" + "}" }" var="${class.name?uncap_first}">
-            	<tr onclick="redirectToPage(${ "${" + class.name?uncap_first + ".id" +"}" })">
-        		<#list referencedProperties as property>
-            		 <td onclick="redirectToPage(this)">
-	                   <c:forEach items="${ "${" + class.name?uncap_first + "." + property.name?uncap_first + "}" }" var="${property.name?uncap_first}">
-	                 		<label>${property.name?cap_first} </label>
-	                   </c:forEach>
-	                 </td>
-	             </#list>
+            	<tr>
+        		 <#list referencedProperties as property>
+                   <c:forEach items="${ "${" + class.name?uncap_first + "." + property.name?uncap_first + "}" }" var="${property.name?uncap_first}">
+                   <td onclick="redirectToPage(${ "${" + property.name?uncap_first +".id" +"}" } )">
+                 		<label>${ "${" + property.name?uncap_first +".id" +"}" } </label>
+                   </td>
+                   </c:forEach>
+                 </#list>
             	</tr>
-            	</c:forEach>
             </tbody>
          </table>
-        </div>
-     </div>
+    	</div>
      </div>
      <script>
 	  function redirectToPage(cell) {
 	    var rowId = cell.parentNode.getAttribute('data-row-id');
 	    var columnValue = cell.innerHTML;
-	    window.location.href = '/'+ columnValue + '?id=' + rowId;
+	    window.location.href = '/'+ columnValue/overview/ + rowId;
 	  }
 	</script>
   </body>
