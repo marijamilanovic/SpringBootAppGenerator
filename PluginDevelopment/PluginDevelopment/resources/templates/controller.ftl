@@ -1,7 +1,5 @@
 package ${class.typePackage};
 
-import java.util.*;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +10,7 @@ import uns.ftn.mbrs.dto.*;
 import uns.ftn.mbrs.model.*;
 import uns.ftn.mbrs.mappers.*;
 import org.springframework.stereotype.Controller;
+import java.util.*;
 
 
 @Controller
@@ -43,12 +42,23 @@ public class ${class.name?cap_first}Controller {
         }
         return "${class.name?cap_first}Form";
     }
-
+    
+    @GetMapping("/overview/{id}")
+    public String overviewObjectById(@PathVariable Integer id, Model model) throws Exception {
+        ${class.name} ${class.name?uncap_first} = ${class.name?uncap_first}ServiceImpl.findById(id);
+        if (${class.name?uncap_first} != null) {
+            model.addAttribute("${class.name?lower_case}", ${class.name?uncap_first});
+        }
+        return "${class.name?cap_first}Overview";
+    }
+    
+    
     @GetMapping("/all")
-    public ResponseEntity<List<${class.name}>> findAll() {
-        List<${class.name}> ${class.name?uncap_first} = ${class.name?uncap_first}ServiceImpl.findAll();
-        return ${class.name?uncap_first} == null ? new ResponseEntity<>(HttpStatus.NOT_FOUND) : ResponseEntity.ok(${class.name?uncap_first});
-
+    public String findAll(Model model) {
+		model.addAttribute("${class.name?uncap_first}", new ${class.name}());
+    	model.addAttribute("${class.name?uncap_first}List", ${class.name?uncap_first}ServiceImpl.findAll());
+    	
+    	return "${class.name}ListOverview";
     }
     
     @PostMapping("/save")

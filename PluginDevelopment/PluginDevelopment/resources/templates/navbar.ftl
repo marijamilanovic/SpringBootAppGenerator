@@ -29,9 +29,7 @@
 			Company
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="/companyInfo">Show all</a>
-          <a class="dropdown-item" href="/bussinesYears/new">Bussines years</a>
-          <a class="dropdown-item" href="/bankAccounts">Bank Accounts</a>
+          <a class="dropdown-item" href="/company/all">Show all</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -39,7 +37,7 @@
 			Invoices
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="/companyInfo">Show all</a>
+          <a class="dropdown-item" href="/invoice/all">Show all</a>
         </div>
       </li>    
       <li class="nav-item dropdown">
@@ -47,14 +45,8 @@
 			Goods or Services
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="/showAll">Show all</a>
-          <a class="dropdown-item" href="/showMeasuerements/new">Show measurements unit</a>
+          <a class="dropdown-item" href="/goodsorservices/all">Show all</a>
         </div>
-      </li>  
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			Price list
-        </a>
       </li>         
     </ul>
     <form class="form-inline my-2 my-lg-0">
