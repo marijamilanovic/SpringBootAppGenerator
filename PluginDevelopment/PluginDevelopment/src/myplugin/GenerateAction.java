@@ -31,6 +31,7 @@ import myplugin.generator.ListOverviewGenerator;
 import myplugin.generator.MainClassGenerator;
 import myplugin.generator.MapperGenerator;
 import myplugin.generator.NavBarGenerator;
+import myplugin.generator.NewFormGenerator;
 import myplugin.generator.OverviewGenerator;
 import myplugin.generator.PomGenerator;
 import myplugin.generator.RepositoryGenerator;
@@ -76,6 +77,7 @@ class GenerateAction extends MDAction{
 			generateApplicationProperties(root);
 			generateListOverview(root);
 			generateForm(root);
+			generateNewForm(root);
 			generateOverview(root);
 			
 			/**  @ToDo: Also call other generators */ 
@@ -224,6 +226,14 @@ class GenerateAction extends MDAction{
 		formGenerator.generate();
 	}
 	
+	private void generateNewForm(Package root) throws AnalyzeException {
+		ModelAnalyzer analyzer = new ModelAnalyzer(root,"");
+		analyzer.prepareModel();
+		GeneratorOptions generatorOptions = ProjectOptions.getProjectOptions().getGeneratorOptions().get("NewFormGenerator");
+		NewFormGenerator newFormGenerator = new NewFormGenerator(generatorOptions);
+		newFormGenerator.generate();
+	}
+
 	private void generateOverview(Package root) throws AnalyzeException {
 		ModelAnalyzer analyzer = new ModelAnalyzer(root,"");
 		analyzer.prepareModel();

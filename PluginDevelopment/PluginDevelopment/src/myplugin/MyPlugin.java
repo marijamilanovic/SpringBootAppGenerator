@@ -115,6 +115,11 @@ public class MyPlugin extends com.nomagic.magicdraw.plugins.Plugin {
 		ProjectOptions.getProjectOptions().getGeneratorOptions().put("FormGenerator", formOptions);
 		formOptions.setTemplateDir(pluginDir + File.separator + formOptions.getTemplateDir());
 		
+		//New Form jsp
+		GeneratorOptions newFormOptions = new GeneratorOptions("c:/temp/mbrs/src/main/webapp/WEB-INF/jsp", "newForm", "templates", "new{0}Form.jsp", true, "");
+		ProjectOptions.getProjectOptions().getGeneratorOptions().put("NewFormGenerator", newFormOptions);
+		newFormOptions.setTemplateDir(pluginDir + File.separator + newFormOptions.getTemplateDir());
+
 		//Overview 
 		GeneratorOptions overviewOptions = new GeneratorOptions("c:/temp/mbrs/src/main/webapp/WEB-INF/jsp", "overview", "templates", "{0}Overview.jsp", true, "");
 		ProjectOptions.getProjectOptions().getGeneratorOptions().put("OverviewGenerator", overviewOptions);
