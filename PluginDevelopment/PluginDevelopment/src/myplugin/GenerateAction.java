@@ -31,6 +31,7 @@ import myplugin.generator.ListOverviewGenerator;
 import myplugin.generator.MainClassGenerator;
 import myplugin.generator.MapperGenerator;
 import myplugin.generator.NavBarGenerator;
+import myplugin.generator.NewFormGenerator;
 import myplugin.generator.PomGenerator;
 import myplugin.generator.RepositoryGenerator;
 import myplugin.generator.ServiceGenerator;
@@ -75,6 +76,7 @@ class GenerateAction extends MDAction{
 			generateApplicationProperties(root);
 			generateListOverview(root);
 			generateForm(root);
+			generateNewForm(root);
 			
 			/**  @ToDo: Also call other generators */ 
 			JOptionPane.showMessageDialog(null, "Code is successfully generated! Generated code is in folder: C:/temp ");
@@ -220,6 +222,14 @@ class GenerateAction extends MDAction{
 		GeneratorOptions generatorOptions = ProjectOptions.getProjectOptions().getGeneratorOptions().get("FormGenerator");
 		FormGenerator formGenerator = new FormGenerator(generatorOptions);
 		formGenerator.generate();
+	}
+	
+	private void generateNewForm(Package root) throws AnalyzeException {
+		ModelAnalyzer analyzer = new ModelAnalyzer(root,"");
+		analyzer.prepareModel();
+		GeneratorOptions generatorOptions = ProjectOptions.getProjectOptions().getGeneratorOptions().get("NewFormGenerator");
+		NewFormGenerator newFormGenerator = new NewFormGenerator(generatorOptions);
+		newFormGenerator.generate();
 	}
 
 
