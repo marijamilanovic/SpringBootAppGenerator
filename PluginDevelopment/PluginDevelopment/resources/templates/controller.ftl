@@ -22,7 +22,7 @@ public class ${class.name?cap_first}Controller {
     public String findById(@PathVariable Integer id, Model model) throws Exception {
         ${class.name} ${class.name?uncap_first} = ${class.name?uncap_first}ServiceImpl.findById(id);
         if (${class.name?uncap_first} != null) {
-            model.addAttribute("${class.name?lower_case}", ${class.name?uncap_first});
+            model.addAttribute("${class.name?uncap_first}", ${class.name?uncap_first});
         }
         return "${class.name?cap_first}Form";
     }
