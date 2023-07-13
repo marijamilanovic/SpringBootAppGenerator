@@ -6,7 +6,7 @@ import uns.ftn.mbrs.model.*;
 import uns.ftn.mbrs.dto.*;
 
 
-public interface ${class.name}Service {
+public interface ${class.name}Service extends ManualChangesService {
 	String save(${class.name}Dto ${class.name?uncap_first}Dto, String parent, Integer id);
 	
 	String update(${class.name} new${class.name});

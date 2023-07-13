@@ -97,4 +97,9 @@ public class ${class.name}ServiceImpl implements ${class.name}Service {
 	}
 		</#if>
 	</#list>
+	
+	@Override
+	public void manualFunction() {
+		System.out.println("Function from");
+	}
 }
