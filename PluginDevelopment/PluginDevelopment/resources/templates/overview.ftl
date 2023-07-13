@@ -20,6 +20,9 @@
         <h3 class="text-center">${class.name?cap_first} Overview</h3>
         <div class="form-group row">
   	</div>
+  	<div>
+         <a class="btn btn-outline-primary btn-sm float-right mb-3" href="/${class.name?lower_case}/${ "${" + class.name?lower_case +".id" +"}" }">Edit ${class.name?uncap_first}</a>
+    </div>
 	<div class="form-group row">
 		<#list persistentProperties as property>
         	<#if property.name != "id" && (property.type == "String" || property.type == "Integer")>
