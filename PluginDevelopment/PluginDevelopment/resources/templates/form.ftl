@@ -24,7 +24,7 @@
     <%@include file="navbar.jsp"%>
 	<div class="container">
 		<br/>
-        <h3 class="text-center">${class.name?cap_first} details</h3>
+        <h3 class="text-center"> Edit ${class.name?cap_first} </h3>
         <div>
         	<form action="update" method="post">
         	 	<input type="hidden" id="id" name="id" value="${'${' + class.name?uncap_first + 'Dto.id}'}">
@@ -71,14 +71,12 @@
                	</#list>
 				<br>
 				<br>
-                <div class="button-container">
-					<input type="submit" class="btn btn-outline-primary btn-sm mb-3" value="Save">
-					<form action="delete/${'${' + class.name?uncap_first + 'Dto.id}'}" method="post">
-		    			<input type="hidden" name="_method" value="DELETE">
-		    			<input type="submit" class="btn btn-danger btn-sm mb-3" value="Delete">
-					</form>
-				</div>
+				<input type="submit" class="btn btn-outline-primary btn-sm mb-3" value="Save">
     		</form>
+    		<form action="delete/${'${' + class.name?uncap_first + 'Dto.id}'}" method="post">
+    			<input type="hidden" name="_method" value="DELETE">
+    			<input type="submit" class="btn btn-danger btn-sm mb-3" value="Delete">
+			</form>
         </div>
      </div>
   </body>

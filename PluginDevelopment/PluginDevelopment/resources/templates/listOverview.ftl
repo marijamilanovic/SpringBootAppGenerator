@@ -12,7 +12,7 @@
             <br/>
             <h3 class="text-center">List of ${class.name?cap_first}</h3>
             <div>
-                 <a class="btn btn-outline-primary btn-sm float-right mb-3" href="/${class.name?uncap_first}/new">Add new ${class.name}</a>
+                 <a class="btn btn-outline-primary btn-sm float-right mb-3" href="/${class.name?lower_case}/new">Add new ${class.name}</a>
             </div>
             <div>
                  <table id="table_id" class="table table-sm table-hover table-bordered text-center mt-3">
