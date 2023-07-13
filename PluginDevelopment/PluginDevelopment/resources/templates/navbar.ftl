@@ -45,7 +45,7 @@
 			Goods or Services
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="goodsorservices/all">Show all</a>
+          <a class="dropdown-item" href="/goodsorservices/all">Show all</a>
         </div>
       </li>         
     </ul>

@@ -35,8 +35,19 @@ public class ${class.name}Dto {
     </#list>
     <#list referencedProperties as property>
     	<#if property.upper == -1>
-    private List<${property.type?cap_first}Dto> ${property.name?uncap_first};
+    // for drop-down
+    private List<${property.type?cap_first}Dto> ${property.type?uncap_first}List;
+		    <#if property.type?ends_with("y")>
+	private List<${property.type}> ${property.type?substring(0,1)?lower_case}${property.type?substring(1, property.type?length-1)}ies;
+			<#elseif property.type?ends_with("s")>
+	private List<${property.type}> ${property.type?uncap_first};
+			<#else>
+	private List<${property.type}> ${property.type?uncap_first}s;
+			</#if>
     	<#else>
+    // for drop-down
+    private List<${property.type?cap_first}Dto> ${property.name?uncap_first}List;	
+    
     private Integer ${property.name?uncap_first}Id;
     	</#if>
     

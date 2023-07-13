@@ -24,15 +24,18 @@ public class ${class.name}ServiceImpl implements ${class.name}Service {
     </#list>
 	
 	@Override
-	public ${class.name}Dto save(${class.name}Dto new${class.name}Dto) {
-		${class.name} toBeSaved = ${class.name?uncap_first}Mapper.${class.name?uncap_first}DtoTo${class.name}(new${class.name}Dto);
-		<#list referencedProperties as property>
+	public String save(${class.name}Dto ${class.name?uncap_first}Dto, String parent, Integer id) {
+		${class.name?uncap_first}Dto.setId(null);
+		${class.name} ${class.name?uncap_first} = ${class.name?uncap_first}Mapper.${class.name?substring(0,1)?lower_case}${class.name?substring(1)}DtoTo${class.name}(${class.name?uncap_first}Dto);
+    	<#list referencedProperties as property>
 			<#if property.upper == 1 && property.oppositeEnd == -1>
-		toBeSaved.set${property.name?cap_first}(${property.name?uncap_first}ServiceImpl.findById(new${class.name}Dto.get${property.name?cap_first}Id()));
-		    </#if>
+		if (parent.equals(${'"' + property.type?uncap_first+ '"'})) {
+			${class.name?uncap_first}.set${property.name?cap_first}(${property.name?uncap_first}ServiceImpl.findById(id));
+		}
+	    	</#if>
     	</#list>
-		${class.name} saved${class.name} = ${class.name?uncap_first}Repository.save(toBeSaved);
-		return ${class.name?uncap_first}Mapper.${class.name?uncap_first}To${class.name}Dto(saved${class.name});
+		${class.name?uncap_first}Repository.save(${class.name?uncap_first});
+		return "redirect:/";
 	}
 
 	@Override
